@@ -22,14 +22,13 @@ You can use the entire platform — Pump Zone, charts, Sniper List, exits, miles
   When you "sign in" to Dequan, your wallet signs a short, random challenge message. The signed message proves you control the wallet without giving us anything that could be replayed elsewhere. See [Key Handling](/safety/key-handling) for detail.
 </Card>
 
-## Optional custodial paths (and why they exist)
-
-Two optional features involve more delegated signing:
+## Optional (but highly preferred) custodial path (and why it exists)
 
 - **[Lightning Wallet](/execution/lightning-wallet)** — a sandboxed custodial wallet that Dequan creates and funds-only for fast one-tap trading. You decide how much to fund it. Withdrawable any time.
-- **[Fast Mode](/execution/fast-mode)** — session-key delegation against your main wallet, with hard caps on amount, slippage, fees, and routes. No funds move into Dequan; only signing authority is delegated, capped, and revocable.
 
-Both exist purely for speed. Neither is required to use Dequan. You can scout, snipe, hold, and exit using only your main wallet's manual signing prompts and you'll have access to every feature on the platform.
+It exists purely for speed. It is not required to use Dequan, but it is the fastest and most streamlined way to trade. You can scout, snipe, hold, and exit using only your main wallet's manual signing prompts and you'll have access to every feature on the platform. Not using the Lightning Wallet means that you have to manually sign for every buy and sell you make — adding not milliseconds but several seconds to each trade.
+
+[Fast Mode](/execution/fast-mode) is a related but **non-custodial** convenience: it delegates capped signing authority on your *main* wallet for a session, with hard limits on amount, slippage, fees, and routes. No funds ever move into Dequan; only signing authority is delegated, capped, and revocable at any time.
 
 ## Why the option matters
 
