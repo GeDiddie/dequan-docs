@@ -6,7 +6,19 @@ icon: "hand-holding-dollar"
 
 The Dequan referral system is designed to be transparent at every step — you should always be able to see what you're earning, why, and when it will arrive.
 
-## The flow
+## Which wallet receives payouts
+
+<Note>
+**Referral payouts are sent on-chain to your connected (non-custodial) wallet** — the same wallet you use to sign in to Dequan. They do **not** deposit into your Lightning Wallet (the custodial trading balance).
+
+We deliberately route earnings to your self-custody wallet so that referral revenue is yours immediately and unconditionally — independent of any trading activity, custodial balance, or session state.
+</Note>
+
+If you change which wallet you sign in with, future withdrawals go to the new address. Past payouts stay where they were originally sent — they are not retroactively redirected.
+
+## When you receive payouts
+
+Referral earnings settle on-demand, not on a fixed schedule:
 
 <Steps>
   <Step title="A referee makes a trade" icon="bolt">
@@ -15,16 +27,20 @@ The Dequan referral system is designed to be transparent at every step — you s
   <Step title="The slice accrues to your referral balance" icon="piggy-bank">
     Your account view shows your current accrued (pending) balance updating in real time as your referees trade.
   </Step>
-  <Step title="A settlement window begins" icon="hourglass-half">
-    Pending balances settle on a regular cadence. The settlement window exists to allow for chargebacks, anti-abuse review, and batched on-chain payout efficiency.
+  <Step title="You request a withdrawal" icon="hand-pointer">
+    Once your accrued balance reaches the minimum withdrawal threshold (0.1 SOL), the **Withdraw** button in your referral panel becomes active. You choose when to pull funds — there is no forced settlement timer.
   </Step>
-  <Step title="Anti-abuse review (automatic)" icon="shield-halved">
-    The system reviews recent activity for the patterns described in [Referral Anti-Abuse](/safety/referral-anti-abuse). Most referrers pass through this transparently with zero impact; flagged accounts may have payouts delayed pending review.
+  <Step title="Anti-abuse review (automatic, instant)" icon="shield-halved">
+    On withdrawal, the system reviews recent activity for the patterns described in [Referral Anti-Abuse](/safety/referral-anti-abuse). Most referrers pass through transparently with zero impact; flagged accounts may have a withdrawal delayed pending review.
   </Step>
-  <Step title="Payout is issued" icon="paper-plane">
-    On settlement, the accrued balance is sent on-chain to the wallet address associated with your account. The transaction signature is recorded in your earnings history.
+  <Step title="Payout is sent on-chain" icon="paper-plane">
+    The withdrawal is broadcast to Solana and lands in your connected wallet within seconds. The transaction signature is recorded in your earnings history.
   </Step>
 </Steps>
+
+<Tip>
+**Why on-demand instead of automatic?** Automatic settlement means surprise transactions on your wallet at unpredictable times. On-demand means you batch your earnings on your own schedule — useful for tax accounting, gas-efficient batching, and simply knowing exactly when funds will move.
+</Tip>
 
 ## What you can see at any time
 
@@ -35,8 +51,8 @@ The Dequan referral system is designed to be transparent at every step — you s
   <Card title="Per-referee breakdown" icon="users">
     See which referees are generating which earnings. Shows wallet (anonymised), join date, total fees you've earned from them, and recent activity.
   </Card>
-  <Card title="Settlement schedule" icon="calendar">
-    Next settlement window, the amount that will settle in it, and the destination wallet for the payout.
+  <Card title="Withdrawal panel" icon="wallet">
+    Your withdrawable balance, the minimum threshold, and the destination wallet (your connected non-custodial address) shown before you confirm.
   </Card>
   <Card title="Historical payouts" icon="receipt">
     Every payout you've ever received, with on-chain transaction signatures you can verify in any explorer.
@@ -51,9 +67,9 @@ The Dequan referral system is designed to be transparent at every step — you s
 The honest set:
 
 - **Anti-abuse throttle.** If your account is flagged for suspicious patterns, payouts may be delayed (Soft), paused (Heavy), or halted (Freeze). See [Referral Anti-Abuse](/safety/referral-anti-abuse).
-- **Referee chargebacks.** If a referee's trade is reversed for any reason (extremely rare), the corresponding referral slice is also reversed before settlement.
+- **Referee chargebacks.** If a referee's trade is reversed for any reason (extremely rare), the corresponding referral slice is also reversed before it can be withdrawn.
 - **Network conditions.** On-chain payouts pay normal Solana priority fees. During severe congestion the payout transaction might take an extra block to confirm; the amount is unaffected.
-- **Wallet changes.** If you change your account's payout wallet, the next settlement uses the new address. Past settlements are not retroactive.
+- **Connected wallet changes.** Payouts always go to the wallet you are currently signed in with. If you switch wallets, future withdrawals follow the new wallet. Past payouts are not retroactively redirected.
 
 ## What can't affect a payout
 
@@ -65,7 +81,7 @@ The honest set:
 
 The single most damaging thing a referral program can do is unexpectedly cut payouts that referrers have already earned. Dequan does not do this.
 
-If there are anti-abuse concerns, the throttle status is visible to the affected user with reasoning. If there are policy changes, they apply prospectively, not retroactively. If a referee's account is closed, the relationship ends but accrued earnings still settle.
+If there are anti-abuse concerns, the throttle status is visible to the affected user with reasoning. If there are policy changes, they apply prospectively, not retroactively. If a referee's account is closed, the relationship ends but already-accrued earnings remain withdrawable.
 
 The referral program is meant to be a quiet, dependable revenue stream for legitimate referrers — not a lottery, not a moving target. We design it that way deliberately.
 
