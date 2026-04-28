@@ -1,0 +1,64 @@
+---
+title: "Charts & Signals"
+description: "Professional-grade charting with live momentum overlays."
+icon: "chart-line"
+---
+
+Open any token and you get a full charting surface — not a sparkline, not a static image, not a 30-second-delayed iframe. A real, live, professional chart with the signals that matter most for short-timeframe trading.
+
+## Two chart engines, one philosophy
+
+Dequan ships two charting engines and uses whichever fits the situation:
+
+<CardGroup cols={2}>
+  <Card title="TradingView Advanced Charts" icon="chart-mixed">
+    The full TradingView experience — drawing tools, indicators, multiple timeframes from 1-second to daily, alerts, studies. Used when you want to do real technical analysis.
+  </Card>
+  <Card title="Cinematic 1-second candles" icon="bolt">
+    A high-performance custom engine for second-by-second tape during active trading. Built to render parabolic moves and 100× wicks without missing a frame.
+  </Card>
+</CardGroup>
+
+Both engines render the same live tape. The difference is **what you're trying to see**: study mode vs. live trade mode.
+
+## What's overlaid on every chart
+
+<Card title="Live trade ticks" icon="signal-stream">
+  Every trade hits the chart in real time. No 5-second polling, no delayed candle close. The candle you're watching is the candle that's happening now.
+</Card>
+
+<Card title="Velocity overlay (gold line)" icon="chart-line">
+  Beneath the candles runs a thin gold line — live, smoothed market-cap velocity. When the gold line is rising, momentum is increasing. When it flattens or turns, the move is mature. This is one of Dequan's signature signals.
+</Card>
+
+<Card title="TQS color coding" icon="palette">
+  The candles themselves are coloured by [Token Quality Score](/charts/token-quality-score). HOT tokens render gold; WARM render cinematic teal/red; COOL render ice-blue. The color shifts live as the underlying score updates.
+</Card>
+
+<Card title="Buy/sell markers" icon="location-dot">
+  Your own trades are marked on the chart at the precise candle they confirmed. You can see exactly where you entered and exited every position, overlaid on the price action that followed.
+</Card>
+
+<Card title="Adaptive scaling" icon="expand">
+  The chart auto-scales to handle parabolic moves and deep drawdowns without freezing. Token launches that 100× in minutes still render cleanly.
+</Card>
+
+## Multi-timeframe
+
+Switch between **1-second**, **1-minute**, **5-minute**, **15-minute**, **1-hour**, and **daily** candles at any time. The data layer keeps a deep enough history that switching timeframes is instant — no reload, no refetch.
+
+## Inline sparklines on the feed
+
+Both the Pump Zone and the Sniper List embed a tiny sparkline of recent candles directly on the token glyph or row. You can scan a hundred tokens and read the trend on each without opening a single chart.
+
+The sparklines aren't toy renders — they're the same candle data, just compressed into a few pixels of meaningful shape.
+
+## Popout charts
+
+Any chart can be popped out into a floating window that stays onscreen as you move around the app. The popout is a full surface: live ticks, Quick Snipe, current PnL, milestone flags, one-tap exits.
+
+This means you can keep the chart of a token you're holding *visible at all times* while you continue scanning the field for the next opportunity. Most other tools force you to choose: study one token or scan the market. Dequan does both.
+
+<Card title="Continue → Cinematic candles" icon="bolt" href="/charts/cinematic-candles" horizontal>
+  How the 1-second tape engine works and why it never freezes.
+</Card>

@@ -1,0 +1,76 @@
+---
+title: "The Spatial Feed"
+description: "How position becomes meaning."
+icon: "map"
+---
+
+A token's position on the Pump Zone field is not decoration. It is the data.
+
+## Two axes, total information
+
+<Card title="Horizontal — Market cap (log scale)" icon="arrows-left-right">
+  The field uses a logarithmic horizontal scale so a token at $5K is visually distant from a token at $50K, and a token at $500K is distant from a token at $5M. This is how a trader actually thinks about size — not in linear dollars, but in **decades**. A 10× move always crosses the same visual distance.
+</Card>
+
+<Card title="Vertical — Velocity (banded)" icon="arrows-up-down">
+  Vertical position reflects real-time market-cap velocity. A token climbing fast in MC drifts upward. A token cooling sinks back down. The bands are scaled so meaningful velocity (real momentum) crosses the visible field, while noise stays low.
+</Card>
+
+## The MC window: zoom that matches your strategy
+
+The horizontal field has a **window** — a min and max market cap range that tokens get rendered within. You set this window:
+
+- **Hunting fresh launches?** Set the window narrow on the low end ($1K–$50K). The whole field becomes early-stage tokens.
+- **Looking for breakouts?** Window across the migration zone ($30K–$500K). Watch tokens cross graduation thresholds.
+- **Following large moves?** Window high ($500K–$10M). The field becomes mid-cap action.
+
+Tokens outside the window aren't deleted — they get **squished** to the edges with reduced visual weight. You still see them, just de-prioritised. Tokens inside the window expand into the full field.
+
+This means you can study one segment of the market intensely without losing peripheral awareness of the rest.
+
+## Reading formations
+
+After a few sessions, certain patterns become unmistakable:
+
+<AccordionGroup>
+  <Accordion title="The Wedge" icon="caret-up">
+    Multiple tokens clustered tight on the left at high velocity. A wave of fresh launches hitting at once. Often a meta day.
+  </Accordion>
+  <Accordion title="The Migration" icon="arrow-right">
+    A token sliding right and slightly upward — climbing in MC while sustaining velocity. Classic "honest run" formation. Doesn't moon, doesn't dump, but compounds.
+  </Accordion>
+  <Accordion title="The Vertical" icon="arrow-up">
+    A single token rocketing up the velocity axis without much horizontal travel. MC isn't growing fast in absolute terms, but the climb rate is — early breakout.
+  </Accordion>
+  <Accordion title="The Cliff" icon="arrow-down">
+    A high-flier suddenly sinking through the velocity bands. Air coming out. If liquidity is also draining, a [drain warning](/safety/liquidity-drain-detection) appears on the token.
+  </Accordion>
+  <Accordion title="The Cluster Burst" icon="explosion">
+    Tightly grouped tokens all flashing simultaneously — coordinated buying, often a group rotation. Worth zooming in on the leader.
+  </Accordion>
+</AccordionGroup>
+
+You will not be told to memorise these. You will *learn them* by spending an hour on the field. That is the design.
+
+## Glow, trail, motion — the visual language
+
+| Cue | Meaning |
+|---|---|
+| **Bright flash** | Fresh trade just hit. The bigger the flash, the bigger the trade. |
+| **Sustained glow** | Steady recent activity — token is alive, not stale. |
+| **Smooth glide** | Token's position is updating from real metric flow, not a refresh. |
+| **Trailing path** | Recent trajectory through the field. Long trails = sustained moves. |
+| **Cyan ring** | Spotlight pick — algorithmic highlight worth a look. |
+| **Red ring** | Risk flag — usually a [drain warning](/safety/liquidity-drain-detection) or honeypot detection result. |
+
+You don't have to memorise the table. The cues are tuned so the right ones grab your attention without effort.
+
+## Performance: how this scales
+
+The field is rendered on a high-performance canvas — not as DOM elements. That's why hundreds of active tokens can move smoothly on the same frame without pinning your CPU. Updates are coalesced and only redraw regions that changed.
+
+Translation: you can keep the Pump Zone open in a tab all day on a laptop and your fans don't spin up.
+
+## Switching to list mode
+
+If you want to do analyst work on a specific token — read every trade, draw on a 5-minute candle, compare exit prices — switch into [Sniper List mode](/pump-zone/sniper-list-vs-pump-zone) at any time. Same data, table view, charts inline. Pump Zone for discovery, Sniper List for analysis.

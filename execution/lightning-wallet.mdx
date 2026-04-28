@@ -1,0 +1,98 @@
+---
+title: "Lightning Wallet"
+description: "Optional one-tap trading mode. No popups, no friction, your funds, withdrawable any time."
+icon: "bolt"
+---
+
+A wallet popup costs you 1–3 seconds on every trade. For analyst-style trading, that's nothing. For sniping, it's the difference between a fill and a chase.
+
+Dequan's **Lightning Wallet** is the optional fix.
+
+## What it is
+
+Lightning Wallet is a custodial Solana wallet that Dequan creates for you and holds securely on its servers. You fund it from your main wallet, and Dequan can sign small trades on your behalf without prompting your main wallet for a signature each time.
+
+It is optional. It is sandboxed. It is withdrawable to your main wallet any time, no questions asked.
+
+## How signing security works
+
+The private key for your Lightning Wallet is **never** stored in plaintext. It is held inside a hardware-backed key management service — the same class of infrastructure used by major banks, exchanges, and institutional crypto custodians for hot-wallet operations.
+
+What that means concretely:
+
+- The key is generated server-side, encrypted, and never transmitted in usable form anywhere outside the signing boundary.
+- Cryptographic operations happen inside the hardware boundary, briefly, only when a sign operation is in flight.
+- Even Dequan operators cannot read your private key.
+- The only thing the system *can* do with the key is sign transactions that match the rules you've enabled.
+
+This is meaningfully more rigorous than "we encrypt the keys at rest" — the hardware-backed boundary provides isolated key material, full audit logging, and replay-resistant access controls.
+
+<Note>
+**You are not transferring custody to Dequan.** You are funding a sandboxed account that you can drain back to your main wallet at any time, with one click, no confirmations required. The funds in Lightning Wallet are at every moment yours.
+</Note>
+
+## What it solves
+
+<CardGroup cols={2}>
+  <Card title="No popup latency" icon="bolt-lightning">
+    Trades execute without your main wallet's signing prompt. Click → sign happens server-side → transaction broadcasts. The popup tax is gone.
+  </Card>
+  <Card title="No popup fatigue" icon="hand">
+    Twenty trades in an hour means twenty signing prompts on a normal setup. With Lightning Wallet, twenty trades in an hour is twenty clicks.
+  </Card>
+  <Card title="Mobile-friendly" icon="mobile">
+    Mobile wallet popups are particularly slow. Lightning Wallet is the difference between a usable mobile experience and a frustrating one.
+  </Card>
+  <Card title="Capped exposure" icon="vault">
+    The amount you fund is the maximum that can ever be at risk. Your main wallet is untouched. You decide the cap.
+  </Card>
+</CardGroup>
+
+## Funding it
+
+You fund Lightning Wallet by sending SOL to its address. Three options:
+
+- **One-click deposit** from a connected main wallet — Dequan opens a transfer prompt with the destination prefilled.
+- **QR code** — scan with any mobile wallet (Phantom, Solflare, hardware) and send.
+- **Manual transfer** — copy the address and send from anywhere.
+
+The balance updates within seconds of arrival.
+
+## Withdrawing
+
+One click. Specify the amount and destination wallet. The withdrawal is signed by the same KMS pipeline, broadcasts immediately, and settles in seconds. **No withdrawal fees** beyond the on-chain priority fee. **No confirmation period.** **No approval flow.** The funds are yours.
+
+## Auto-enable on first deposit
+
+When your Lightning Wallet receives its first non-zero balance, Lightning Mode auto-toggles ON. The system assumes that funding the wallet means you intend to use it. You can disable this behaviour in settings if you'd rather flip the switch manually.
+
+## Tier-based caps
+
+Each tier has a maximum balance cap on Lightning Wallet:
+
+- **Scout** has a cap appropriate for retail-scale sniping.
+- **Sniper** has a higher cap for power users.
+- **Apex** has the highest cap for serious traders.
+
+The caps exist for security reasons — they limit your exposure even if something catastrophic ever happened to the signing pipeline. You can always exceed the cap on your main wallet; the cap only governs Lightning.
+
+## When you should use it
+
+<Card title="Use Lightning Wallet when:" icon="circle-check">
+  - You're trading actively and signing prompts are slowing you down
+  - You're on mobile
+  - You want one-tap exits from the [Racing Lanes](/pump-zone/racing-lanes)
+  - The amount you'd fund is comfortably small relative to your portfolio
+</Card>
+
+<Card title="Stay on your main wallet when:" icon="circle-xmark">
+  - You're doing one or two large, deliberate trades
+  - You strongly prefer non-custodial-everything
+  - You're testing the platform and don't want to fund anything yet
+</Card>
+
+Both modes work fully. You can switch any time. Many traders use a mix: Lightning Wallet for fast Pump Zone scalps, main wallet for deliberate larger entries.
+
+<Card title="See also: Fast Mode" icon="forward-fast" href="/execution/fast-mode" horizontal>
+  Session-key delegation — keep your main wallet's funds, delegate signing for a capped session.
+</Card>

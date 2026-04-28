@@ -1,0 +1,61 @@
+---
+title: "Holder & Dev Surveillance"
+description: "Top-10 concentration, dev wallet, snipers, bundlers, insiders — streaming live."
+icon: "users-viewfinder"
+---
+
+Token concentration is the single most predictive indicator of rug risk. If the top 10 wallets hold 80% of supply and three of them are the dev's known alts, you are not trading a market — you are trading three people's mood and they have every incentive to dump on you.
+
+Dequan watches the actors behind every token, live, and shows you what's happening with them in real time.
+
+## What's tracked
+
+<Card title="Top 10 holders" icon="users">
+  The ten largest holders by percentage of supply. Updates as on-chain transfers happen. High concentration is a yellow flag; *changing* concentration (e.g., a top wallet starting to ladder out) is a red flag.
+</Card>
+
+<Card title="Dev hold" icon="user-tie">
+  How much of the supply the deployer wallet still holds. A dev sitting on 30% of supply is a different risk profile than a dev who already distributed. Both can be fine; both can be catastrophic. The number plus the activity matters.
+</Card>
+
+<Card title="Snipers" icon="crosshairs">
+  Wallets that bought in the very first blocks of the token's existence. These are typically bots running launch-snipe strategies. A high sniper count means many sophisticated actors are about to be looking for exits.
+</Card>
+
+<Card title="Bundlers" icon="boxes-stacked">
+  Wallets identified as part of bundled launch transactions — coordinated buys that arrived in the same block, often with the same source. Bundlers are a strong indicator of insider coordination.
+</Card>
+
+<Card title="Insiders" icon="user-secret">
+  Wallets connected by transfer-graph analysis to the deployer or to known alt clusters. Insiders are doing what the dev is doing, with the dev's information advantage.
+</Card>
+
+## Where it surfaces
+
+- **The Holders tab** of the [Token Detail Tabs](/charts/token-detail-tabs) — full live snapshot
+- **The action tray** — alerts when sniper/bundler/insider activity changes meaningfully
+- **The TQS** — concentration metrics are an input to the [Token Quality Score](/charts/token-quality-score)
+- **The Pump Zone glyph** — high-concentration tokens render with a warning ring
+
+## Streaming, not snapshots
+
+The data is *streamed*. You don't pull a snapshot when you open the chart and then watch a stale view. The view updates as the underlying chain state updates. If a top-10 holder begins selling while you're on the chart, you see it happen.
+
+This is the difference between **detection** (you see something has happened) and **observation** (you see something is happening). Dequan gives you observation.
+
+## What it means in practice
+
+The single highest-leverage habit a trader can build is reading concentration before sizing in. Dequan makes that habit easy:
+
+1. Open the chart
+2. Glance at the Holders tab
+3. If top 10 `< 30%` and bundlers/snipers look reasonable, proceed with normal size
+4. If top 10 `> 50%` or insiders look heavy, reduce size or pass
+
+That whole sequence takes about three seconds in Dequan because the data is colocated with the chart and the buy panel. Doing the same check on a typical scanner setup means opening a separate site, looking up the contract, waiting for the page to load, parsing a wall of text. By the time you're done, the entry is gone — or you skipped the check, because you didn't have time.
+
+## What we're explicitly *not* doing
+
+We do **not** scrape Twitter sentiment, count Telegram members, or weight reputation signals into this. Those signals are easy to manipulate and not worth the noise.
+
+What we track is **on-chain behaviour** — wallets, balances, transfers, timing. That data is hard to manipulate at scale and tells you what is *actually happening* with the supply, not what people are *saying* about it.

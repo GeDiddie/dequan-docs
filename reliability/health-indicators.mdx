@@ -1,0 +1,67 @@
+---
+title: "Health Indicators"
+description: "Live system health is shown on the surface, not hidden in a separate status page."
+icon: "heart-pulse"
+---
+
+When you trade through Dequan, dozens of upstream systems have to work together — chain reads, market data, quote sources, submission paths, signing infrastructure. If any one of them is degraded, your trades feel different.
+
+Most platforms hide this from users. We surface it.
+
+## What you see
+
+<Card title="Connection indicator" icon="signal-stream">
+  The header carries a small live status indicator. Green = all systems normal. Amber = degraded — some signals are slower or coming from fallback sources. Red = service interruption — execution paused.
+</Card>
+
+<Card title="Per-system pills" icon="grip-dots">
+  Hovering or expanding the indicator reveals per-system health: data feed, chart engine, execution pipeline, signing infrastructure, on-chain reads. Each shows its current status with last-update timestamp.
+</Card>
+
+<Card title="Inline degradation cues" icon="triangle-exclamation">
+  When something is degraded, the affected feature shows it inline. Charts that have lost a tick stream show a "reconnecting" badge. Quotes coming from a fallback source say so. The Pump Zone shows a shaded overlay if it's running on partial data.
+</Card>
+
+<Card title="Auto-recovery" icon="arrow-rotate-right">
+  Degraded states clear automatically as upstream services recover. You don't need to refresh, reload, or do anything — the platform reconnects, re-warms caches, and resumes normal operation.
+</Card>
+
+## Why this matters
+
+The alternative — hiding system state from the user — is the industry norm because it looks cleaner. The cost is that traders blame *themselves* (or worse, the platform's correctness) when problems are upstream.
+
+By showing health on the surface, Dequan lets you reason about what's happening. If your charts feel slow and the indicator is amber, you know it's not your machine — and you can decide whether to trade through the degradation or wait it out.
+
+## What "amber" actually means
+
+Amber is the most common non-green state. It means something is **noticeably degraded but the platform is still functional**:
+
+- A primary data feed is slow; data is being served from a fallback.
+- One submission path is slow; the parallel-landing race is running with reduced redundancy.
+- A quote source is rate-limited; quotes are coming from alternative sources.
+- An RPC endpoint is congested; on-chain reads have higher latency.
+
+Trading is fine in amber. It's just not as good as it would be in green. The indicator gives you the information; you decide.
+
+## What "red" means
+
+Red means **execution is unsafe** and the platform has actively paused new trades to protect users:
+
+- Critical signing infrastructure is unreachable.
+- All quote sources are unavailable.
+- A safety check (e.g., honeypot guard) cannot run reliably.
+- A confirmation pipeline is fully broken.
+
+When red, existing positions remain visible (you can still see what you hold), but the buy and sell paths are halted. The pause is automatic and clears automatically as soon as conditions allow safe execution again.
+
+We use red sparingly. False reds train users to ignore them, which is dangerous. Every red is a deliberate "do not execute right now" signal.
+
+## What we publish post-incident
+
+After any incident that affected users meaningfully, we publish a short post-mortem — usually on the [changelog](/resources/changelog) — explaining what happened, how it was detected, and what changed to prevent recurrence.
+
+We do this because incidents *will* happen — the chain ecosystem is not under our control — and the way a platform handles them tells you more about its engineering culture than any marketing page. Honest post-mortems build durable trust; cover-ups destroy it.
+
+<Card title="Continue → Latency Transparency" icon="stopwatch" href="/reliability/latency-transparency" horizontal>
+  Per-trade timing data you can audit yourself.
+</Card>

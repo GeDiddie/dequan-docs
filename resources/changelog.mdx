@@ -1,0 +1,105 @@
+---
+title: "Changelog"
+description: "What's new, what's changed, what's been fixed."
+icon: "clock-rotate-left"
+---
+
+The changelog records meaningful platform changes — new features, significant fixes, performance improvements, and operational post-mortems.
+
+We keep entries plain. No marketing fluff, no breathless announcements. What changed, why, what to expect.
+
+## Subscribe
+
+Follow [@dequanxyz](https://x.com/dequanxyz) on X for changelog announcements as they ship.
+
+---
+
+## Recent
+
+<Update label="Public Documentation Launch" description="The Mintlify docs are live">
+  Comprehensive product documentation now available at this site. Covers the Pump Zone, charts, execution pipeline, safety stack, tiers, and referrals. The audience is users who want to understand what Dequan does and why it works the way it does — not an integration manual.
+
+  Future updates here will track real platform changes as they ship.
+</Update>
+
+<Update label="Referral Anti-Abuse System" description="Automatic protection for the referral program">
+  Deployed an automated anti-abuse system covering self-referral, sybil farming, wash farming, and subscription gaming. Most legitimate referrers see no impact; flagged accounts move through Normal → Soft → Heavy → Freeze throttle tiers based on continuing patterns.
+
+  The system is bidirectional — flagged accounts can return to Normal automatically as activity normalises. Disputes can be raised through support.
+
+  See [Referral Anti-Abuse](/safety/referral-anti-abuse).
+</Update>
+
+<Update label="Pump Zone — Spatial Feed v2" description="Refined formations, faster glyph updates, smoother trails">
+  The Pump Zone field rendering has been upgraded for better readability under high-volume conditions. Glyph updates are coalesced more aggressively (no perceptible loss of fidelity, much smoother visuals during launch storms). Trails fade with a tuned curve that emphasises recent movement.
+
+  Five formation patterns now have explicit recognition logic in the field renderer: Wedge, Migration, Vertical, Cliff, Cluster Burst.
+
+  See [Spatial Feed](/pump-zone/spatial-feed).
+</Update>
+
+<Update label="Latency Transparency Panel" description="Per-trade timing data is now exposed to users">
+  Every trade you make now has its full per-stage timing recorded and visible in your trade history: decision time, quote staleness, build time, signing latency, broadcast-to-confirmation, winning landing path.
+
+  This is the most important transparency feature on the platform. We don't expect you to trust speed claims; we want you to verify them.
+
+  See [Latency Transparency](/reliability/latency-transparency).
+</Update>
+
+<Update label="Adaptive Slippage" description="Slippage now calibrated per-quote, not flat">
+  Slippage tolerance is now derived from each quote's price-impact percentage, with floors and ceilings to prevent extremes. The default is now correct for shallow pools (where flat 5% slippage was sometimes too tight) and deep pools (where flat 5% was wasteful).
+
+  Manual override remains available.
+
+  See [Adaptive Fees & Slippage](/execution/adaptive-fees-and-slippage).
+</Update>
+
+<Update label="Cinematic 1-Second Candles" description="Custom chart engine for live tape">
+  A purpose-built canvas-based chart engine for short-timeframe charts. Designed to render parabolic moves and 100× wicks at 60fps without freezing. Replaces the previous library-based renderer for 1-second and 1-minute timeframes.
+
+  Includes the gold velocity overlay, TQS-coloured candles, and adaptive scaling.
+
+  See [Cinematic Candles](/charts/cinematic-candles).
+</Update>
+
+<Update label="Lightning Wallet — Auto-enable on First Deposit" description="Quality-of-life improvement">
+  When your Lightning Wallet receives its first non-zero balance, Lightning Mode now auto-toggles ON. The system assumes that funding the wallet means you intend to use it. Can be disabled in settings if preferred.
+
+  See [Lightning Wallet](/execution/lightning-wallet).
+</Update>
+
+<Update label="Burn Barrel" description="Sweep dust positions and zombie tokens">
+  Wallet hygiene utility added to the [Toolbox](/toolbox/overview). Identifies positions below a configurable dust threshold, surfaces unsellable / honeypot positions, and sweeps everything in a single batch with rent reclaim.
+
+  See [Burn Barrel](/toolbox/burn-barrel).
+</Update>
+
+<Update label="Parallel Landing — Path Diversity" description="Submission race now spans multiple landing infrastructures">
+  The submission race in the execution pipeline now runs across paths with deliberately diverse latency and congestion characteristics. Tail latency on submission has improved measurably under stressed-network conditions.
+
+  See [Parallel Landing](/execution/parallel-landing).
+</Update>
+
+<Update label="Token Quality Score Calibration Update" description="Periodic recalibration against fresh outcomes">
+  TQS weighting has been recalibrated against recent meme-token outcome data. The HOT band now correlates more tightly with sustained-move tokens; the COOL band catches more concentration-risk patterns.
+
+  This is one of several scheduled recalibrations. The score evolves as the meta evolves.
+
+  See [Token Quality Score](/charts/token-quality-score).
+</Update>
+
+---
+
+## Pre-launch milestones
+
+Earlier development milestones are not individually listed here. The major themes were:
+
+- The Pump Zone (spatial-discovery thesis)
+- The two-engine chart suite (TradingView + Cinematic)
+- The execution pipeline (warmup → adaptive → parallel)
+- The safety stack (honeypot, drain, surveillance)
+- Lightning Wallet and Fast Mode signing paths
+- Tiered access (Scout / Sniper / Apex)
+- Referral program and anti-abuse
+
+Future entries will track changes as they ship, with full transparency on incidents and post-mortems.

@@ -1,0 +1,99 @@
+---
+title: "Glossary"
+description: "Plain-English definitions of every term Dequan uses."
+icon: "book"
+---
+
+## Trading concepts
+
+**Bonding curve** — A token launchpad model where price increases programmatically as supply is bought. Common on Solana meme platforms; visible on the chart as the early sloped buy zone before the token migrates to a standard pool.
+
+**Bundler** — A wallet that participated in a coordinated launch transaction (multiple buys arriving in the same block from related sources). Often a strong signal of insider coordination.
+
+**Honeypot** — A token you can buy but cannot sell. Detected and blocked by Dequan's [Honeypot Guard](/safety/honeypot-guard).
+
+**Insider** — A wallet linked by transfer-graph analysis to the deployer or to known alt clusters. Different signal weight than a sniper or bundler.
+
+**Migration** — When a token graduates from its launchpad's bonding curve to an open pool. Risk and dynamics change at this point.
+
+**Rug** — Generic term for any deliberate exploit by the deployer that damages holders: liquidity drain, dev exit, honeypot toggle, etc.
+
+**Sniper** — A wallet that bought in the very first blocks of a token's existence, typically a launch-snipe bot. Different from "Sniper" the Dequan tier.
+
+**TQS** — Token Quality Score. See [Token Quality Score](/charts/token-quality-score). A 0-100 risk/quality summary that drives chart palette and Pump Zone filtering.
+
+## Pump Zone vocabulary
+
+**Awakening** — The lowest velocity band on the Pump Zone. Tokens here are newly active or showing first-signs-of-life.
+
+**Building** — The second-lowest velocity band. Steady, sustained early momentum.
+
+**Pumping** — The high velocity band. Tokens accelerating into a major move.
+
+**Mooning** — The highest velocity band. Live, parabolic, in-progress mass attention.
+
+**Cliff (formation)** — A token suddenly dropping multiple velocity bands. Visible as a downward streak on the field.
+
+**Cluster Burst** — Multiple tokens lifting from the same area of the field simultaneously. Often signals sector rotation.
+
+**Migration (formation)** — A token gliding rightward through market-cap zones over time. The shape of an organic, sustained run.
+
+**Vertical** — A token rising through velocity bands almost vertically with little horizontal drift. The shape of viral acceleration.
+
+**Wedge** — A token gliding rightward and slightly upward — sustained, deliberate momentum.
+
+**Field** — Dequan's term for the overall Pump Zone surface, where every active token is positioned spatially.
+
+**Glyph** — An individual token's visual representation on the field — its dot, its trail, its color, its TQS ring.
+
+**Lane** — A horizontal band on the field corresponding to a velocity range. Tokens move between lanes as their momentum changes.
+
+**Trail** — The recent path of a token across the field, rendered as a fading line behind the glyph.
+
+## Execution vocabulary
+
+**Adaptive fees** — Priority fees calibrated live to network percentiles; see [Adaptive Fees & Slippage](/execution/adaptive-fees-and-slippage).
+
+**Adaptive slippage** — Slippage tolerance calibrated to actual quote impact and pool depth.
+
+**Click-to-fill** — Total time from pressing the buy button to the trade being confirmed. The metric that matters.
+
+**Fast Mode** — Optional session-key delegation for Sniper/Apex; see [Fast Mode](/execution/fast-mode).
+
+**Lightning Wallet** — Optional sandboxed custodial wallet for fast trading; see [Lightning Wallet](/execution/lightning-wallet).
+
+**Parallel landing** — Broadcasting a signed transaction across multiple submission paths simultaneously; see [Parallel Landing](/execution/parallel-landing).
+
+**Pre-execution warmup** — Background preparation of a trade that begins the moment a chart is opened; see [Pre-Execution Warmup](/execution/pre-execution-warmup).
+
+**Priority fee** — The Solana mechanism by which transactions buy their way into the next block during competitive periods.
+
+**Quick Snipe** — One-tap buy mode for the Pump Zone, paired with pre-execution warmup for minimum click-to-fill latency.
+
+**Quote staleness** — How long ago a quote was fetched. Pre-execution warmup keeps this low.
+
+## Tier and access vocabulary
+
+**Apex** — Highest invite-only tier; lowest fees, highest limits, priority support; see [Sniper & Apex](/tiers/sniper-and-apex).
+
+**Scout** — Free tier with full feature access; see [Scout](/tiers/scout).
+
+**Sniper** — Mid invite-only tier; reduced fees, higher limits, Fast Mode unlocked; see [Sniper & Apex](/tiers/sniper-and-apex).
+
+## Referral vocabulary
+
+**Accrued balance** — Pending referral earnings that have not yet settled to your wallet.
+
+**Settlement** — The on-chain payout of accrued referral earnings on a regular cadence.
+
+**Throttle tier** — Anti-abuse status of your referral account: Normal, Soft, Heavy, or Freeze. See [Referral Anti-Abuse](/safety/referral-anti-abuse).
+
+## Reliability vocabulary
+
+**Amber** — Health indicator state: degraded but functional.
+
+**Green** — Health indicator state: all systems normal.
+
+**Red** — Health indicator state: execution paused for safety.
+
+**p95 / p99** — Percentile latency measurements. p95 latency is the value below which 95% of trades fall — a more honest measure of "how fast" than median.

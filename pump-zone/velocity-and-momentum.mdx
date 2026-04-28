@@ -1,0 +1,102 @@
+---
+title: "Velocity & Momentum"
+description: "Most platforms show you 24h % change. Dequan shows you the slope of right now."
+icon: "gauge-high"
+---
+
+Price tells you where a token *is*. Velocity tells you where it's *going*. Acceleration tells you whether the trend is still real.
+
+Dequan exposes all three.
+
+## Live velocity, not stale percent change
+
+Traditional feeds show you "+47% in 24h" or "+12% in 1h." Those numbers are useful for context, but they're useless for decisions in a meme-token market that finishes its life cycle in 90 minutes.
+
+Dequan computes a **live, smoothed velocity** in real time as trades arrive. It is the rate at which a token's market cap is currently climbing. It updates on every market tick, not on every refresh.
+
+You see velocity in three places:
+
+<Card title="Vertical position on the Pump Zone field" icon="arrow-up">
+  Higher on the field = climbing faster right now.
+</Card>
+
+<Card title="Gold velocity line on every chart" icon="chart-line">
+  Open any token's chart and a thin gold line traces velocity beneath the candles. When the gold line is rising, momentum is building. When it flattens or turns, the move is done.
+</Card>
+
+<Card title="Kinetic state badges" icon="signal">
+  Tokens carry a state: **Awakening**, **Building**, **Pumping**, or **Mooning**. The state is derived from velocity and changes live as conditions change. You don't compute anything — you read the badge.
+</Card>
+
+## Acceleration: the early-warning system
+
+Velocity tells you the trend. **Acceleration** — the change in velocity — tells you whether the trend is still alive.
+
+A token that has run hard for ten minutes might still be at high velocity, but if velocity is *no longer increasing*, the move is mature. The crowd is exhausted. The crash is more likely than the next leg up.
+
+Conversely, a token that's been sideways but suddenly shows positive acceleration — even at low absolute velocity — is the signal you wanted. It is the **inflection** that experienced traders try to catch and that beginners always miss because they're staring at price.
+
+Dequan surfaces acceleration directly in the chart and on the field cues. You don't have to compute it. You don't have to draw a derivative on a chart. The signal is there.
+
+## The Token Quality Score (TQS)
+
+Velocity and acceleration tell you what a token is *doing*. The **Token Quality Score** tells you whether you should care.
+
+TQS is a 0–100 score that synthesises multiple risk and quality dimensions into a single number. The components are weighted so that:
+
+- **High TQS (≥70, "HOT")** — clean profile, real activity, low concentration risk. Worth a closer look.
+- **Medium TQS (40–69, "WARM")** — mixed signals. Worth opening the chart, not blind-buying.
+- **Low TQS (`<40`, "COOL")** — concentration is high, dev is questionable, or the action looks manufactured. Most traders should pass.
+
+TQS is shown as a badge on the token and is the basis for **chart color**:
+
+| TQS | Chart palette | Meaning |
+|---|---|---|
+| HOT | Gold candles | Clean, accelerating, worth attention |
+| WARM | Cinematic teal/red | Mixed; trade with awareness |
+| COOL | Ice blue | Risky profile; consider passing |
+
+The color shifts live as the score updates, so a chart that goes from teal to gold while you're watching is a **tell** that the underlying conditions just improved.
+
+<Note>
+We deliberately don't publish the exact TQS weighting. The score is one of Dequan's research outputs and changes as the meta changes — what predicted quality six months ago doesn't predict it now. What we *do* commit to is that TQS is never paid promotion, never tied to which DEX a token uses, and never adjusted because someone asked nicely.
+</Note>
+
+## Filtering by velocity band
+
+You can hide every token that isn't in the velocity bands you care about. The most common configurations:
+
+<Tabs>
+  <Tab title="The Hunter">
+    Show: **Awakening + Building**.
+
+    You are trying to enter early. You don't care what's already mooning — you care about the next mover. The field becomes a slow ballet of pre-breakout tokens.
+  </Tab>
+  <Tab title="The Surfer">
+    Show: **Building + Pumping**.
+
+    You are trying to ride confirmed momentum without buying tops. You wait for tokens to graduate from Awakening into Building, then enter on confirmation.
+  </Tab>
+  <Tab title="The Sniper">
+    Show: **Pumping + Mooning**.
+
+    You are looking for parabolic moves and willing to wear higher risk. The field condenses to the active vertical band. Reaction time matters.
+  </Tab>
+  <Tab title="The Scanner">
+    Show: **All bands**.
+
+    You want full awareness. The field shows everything; you trust your eye to filter.
+  </Tab>
+</Tabs>
+
+## Why this matters
+
+Most retail traders lose because they confuse **price** with **trend**. They buy after a token is already up 200% because the green number looks good, not realising the green number is decelerating and the move is over.
+
+Dequan gives you the slope and the slope-of-the-slope. You stop chasing prints. You start recognising shapes.
+
+That's the entire shift.
+
+<Card title="Continue → Racing Lanes" icon="flag-checkered" href="/pump-zone/racing-lanes" horizontal>
+  Now that you've entered, your position becomes a lane on the field.
+</Card>

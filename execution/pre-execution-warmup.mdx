@@ -1,0 +1,70 @@
+---
+title: "Pre-Execution Warmup"
+description: "The trade is being prepared before you decide to do it."
+icon: "forward"
+---
+
+This is the single biggest reason a Dequan trade feels different.
+
+Every other Solana trading tool starts the work of building a transaction **after you click Buy**. They have to: fetch a fresh quote, validate the route, fetch a recent blockhash, check for the destination token account, assemble the transaction, sign it, broadcast it.
+
+Each of those steps costs network round-trips. Each round-trip costs hundreds of milliseconds. Add them up and the click-to-confirmation time of a typical "fast" Solana tool is well over a second — most of it spent doing work that *could have been done earlier*.
+
+Dequan does it earlier.
+
+## The trigger: opening a chart
+
+The instant you tap a token to open its chart drawer, Dequan begins **warming the trade in the background**. You don't see anything happening. The chart loads, the metrics stream in, you start studying. Meanwhile, behind the scenes:
+
+<Steps>
+  <Step title="A quote is fetched against your default bet size" icon="magnifying-glass-dollar">
+    The system races multiple quote sources in parallel and keeps the freshest result. The quote includes the current price, the route, and a *recommended slippage* tuned to the pool's depth.
+  </Step>
+  <Step title="The route is validated and cached" icon="route">
+    Whatever DEX or aggregator the quote is from, the route is held warm so the build step doesn't need to re-resolve it.
+  </Step>
+  <Step title="Network state is staged" icon="cube">
+    Recent blockhash, priority fee level, and other transaction-level details are pulled into a hot cache so the build step doesn't pay any RPC round-trip cost.
+  </Step>
+  <Step title="Destination account is pre-checked" icon="circle-check">
+    If you don't already hold the token, the system knows it needs to include account-creation in the transaction. If you do, that step is skipped. Either way, the decision is already made by the time you click.
+  </Step>
+</Steps>
+
+By the time you press **Snipe**, almost nothing remains except finalise-and-sign. The user-visible click-to-broadcast time is a fraction of what it would be on a tool that starts the work at click time.
+
+## Why this matters
+
+Two practical effects:
+
+<Card title="You snipe the move you actually saw" icon="crosshairs">
+  When the market is moving fast, a 600 ms delay between "I want to buy" and "transaction broadcasts" is the difference between filling at the price you decided on and filling 8% higher. Pre-execution warmup collapses that delay.
+</Card>
+
+<Card title="The quote on screen is the quote you get" icon="check-double">
+  Because the quote in your buy panel is the same quote already staged for execution, what you see is what fills. No "the price moved while you were clicking" surprises.
+</Card>
+
+## Cache scope and freshness
+
+Quotes are kept warm for a short window — long enough to absorb your decision time, short enough to never serve you a stale price. If the quote ages out before you click, the system silently refreshes it; if you click during the refresh, the new quote is used.
+
+The cache is also **shared across the user base**. If a thousand traders open the same hot token's chart in the same minute, the upstream quote source isn't getting a thousand requests — it's getting one, fanned out a thousand ways. This is why Dequan's pre-execution doesn't break upstream rate limits even at scale.
+
+## What if conditions change?
+
+If, between you opening the chart and clicking buy, the underlying conditions move — the pool shifts, the route becomes invalid, the price impact changes — the system detects the staleness and re-warms before signing. **You always trade against current conditions; you just don't pay the warmup latency at click time.**
+
+## The Quick Snipe path
+
+For tokens you're trading aggressively from the Pump Zone with **Quick Snipe ON**, the warmup is even more aggressive — the system pre-stages a fully built transaction template against your default bet size, so the click-to-signature time approaches the network's own minimum.
+
+You can preview Quick Snipe behaviour on any token by opening its drawer and watching the buy panel: the price quote and the recommended slippage are populated within a few hundred milliseconds and stay current. By the time you decide, the trade is essentially loaded.
+
+## You can verify all of this
+
+Every trade you execute logs its per-stage timing — quote, build, sign, land — into the [Latency Transparency](/reliability/latency-transparency) panel. After your first few buys, look at the panel: the build step on a pre-warmed trade is dramatically smaller than the click-to-confirmation total. That's the warmup, working.
+
+<Card title="Continue → Adaptive fees and slippage" icon="sliders" href="/execution/adaptive-fees-and-slippage" horizontal>
+  How priority fees and slippage tune themselves to live conditions.
+</Card>

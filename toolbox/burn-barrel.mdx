@@ -1,0 +1,51 @@
+---
+title: "Burn Barrel"
+description: "Sweep dust and zombie tokens out of your wallet in clean batches."
+icon: "fire"
+---
+
+If you've been trading meme tokens for any length of time, your wallet has accumulated **dust** — fractional positions in 47 dead tokens, each worth a few cents, each occupying a token account, each costing rent.
+
+You can ignore them. Most traders do. The result: a wallet view full of zombies, a balance sheet polluted with garbage, and a slow drain of SOL paying account rent on positions that will never be worth anything.
+
+The Burn Barrel solves this in batches.
+
+## What it does
+
+<Steps>
+  <Step title="Scan your wallet" icon="magnifying-glass">
+    The Burn Barrel identifies every token position in your wallet whose total value falls below a threshold (you choose) — your "dust definition." It also flags tokens that are honeypots, frozen, or have zero remaining liquidity.
+  </Step>
+  <Step title="Show you the manifest" icon="list-check">
+    A list of every position the Burn Barrel proposes to handle, with current value, status (sellable / unsellable), and what reclaiming the account will return in rent. You can deselect any individual token.
+  </Step>
+  <Step title="Sweep in one batch" icon="broom">
+    With one click, the Burn Barrel executes the cleanup: sells whatever can be sold, closes the token accounts, reclaims the rent in SOL, and consolidates the proceeds back to your wallet.
+  </Step>
+  <Step title="Final ledger" icon="receipt">
+    A summary of what was swept, what was reclaimed, and what couldn't be processed (with reasons). The cleanup is auditable.
+  </Step>
+</Steps>
+
+## Why this is in the free tier
+
+Wallet hygiene is not a premium feature. Every Dequan trader can run the Burn Barrel as often as they want, with no fee on the cleanup operation itself (you still pay on-chain priority fees for the sells/closes).
+
+We've found the Burn Barrel runs naturally with the [Sniper List](/pump-zone/sniper-list-vs-pump-zone) workflow — close a flurry of positions, run the Barrel to consolidate, return clean to scanning. After a few cycles, your wallet stays sharp instead of slowly drowning.
+
+## What it won't touch
+
+The Burn Barrel **never** touches:
+
+- Your SOL balance
+- Major-asset balances (USDC, USDT, etc.)
+- Tokens above your dust threshold
+- Tokens you've explicitly pinned (positions you want to hold even if small)
+
+You can also lower the threshold to "only handle exact-zero balances" if you want a pure-rent-reclaim sweep without selling anything.
+
+## Reclaiming rent
+
+Solana token accounts cost about 0.002 SOL each in rent. A wallet with 100 dead positions has ~0.2 SOL trapped in account rent. The Burn Barrel reclaims that rent as part of the close operation.
+
+The numbers are small per account but real, and over a year of active sniping the reclaim is meaningful.

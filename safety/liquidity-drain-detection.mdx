@@ -1,0 +1,72 @@
+---
+title: "Liquidity Drain Detection"
+description: "We watch the pool's actual SOL reserves. When they drain, you know before the price does."
+icon: "droplet-slash"
+---
+
+The textbook Solana rug works like this: the deployer (or an insider) pulls liquidity out of the token's pool faster than the market can react. By the time the chart shows a price collapse, the pool is already empty and exits have stopped working.
+
+The defence against this is simple and absolute: **watch the pool's actual on-chain SOL reserves**, not just the price feed.
+
+That is what Dequan does.
+
+## Real reserves, not derived signals
+
+Most tools infer liquidity from price action — a sudden drawdown is treated as a possible drain. The problem with that approach is that **price moves before the inference fires**, which means you're alerted *after* you've already taken the loss.
+
+Dequan reads the underlying pool's SOL reserves directly from chain. When those reserves move materially down — and especially when they drop in a single transaction by an amount consistent with a deliberate drain — the alert fires within seconds, often before the price feed has fully repriced.
+
+That window — between the on-chain drain and the price catching up — is the window where you can still exit.
+
+## Hysteresis, not single-reading panic
+
+A naive drain detector would fire on every transient dip and drive everyone insane. Dequan's detector requires **two consecutive readings** below threshold before raising an alert.
+
+This is deliberate: it eliminates false alarms from a single noisy reading or a brief liquidity migration, while still firing fast on actual drain events (which produce sustained low readings, not bouncing ones).
+
+The result is an alert system that **stays quiet until something is really wrong, then becomes very loud very fast.**
+
+## What you see when it fires
+
+<Card title="On the chart" icon="chart-line">
+  A red banner appears across the cinematic chart. The candle palette shifts to warning colors. Existing positions show a "drain detected" annotation.
+</Card>
+
+<Card title="On the Racing Lanes" icon="flag">
+  Any open positions in the affected token gain a blinking red badge. The recommended action becomes immediate exit.
+</Card>
+
+<Card title="On the Pump Zone field" icon="globe">
+  The token's glyph turns red and is pushed visually toward the field's "decay" zone. Other users browsing the Pump Zone see the same warning instantly.
+</Card>
+
+<Card title="In the action tray" icon="bell">
+  A notification appears with the token, the magnitude of the drain, and a one-tap exit button.
+</Card>
+
+## Auto-recovery
+
+If the reserves come back — which happens sometimes during legitimate liquidity migrations or temporary market-maker activity — the detector clears automatically once readings are healthy again. The alert is **not** sticky beyond what conditions warrant.
+
+This means the detector can be trusted to be *current* — a red banner that's still up means the pool is *still* in trouble, not that it once was an hour ago.
+
+## What it doesn't catch
+
+Drain detection is one specific defense against one specific attack pattern. It does not protect against:
+
+- **Slow rugs** where liquidity is removed gradually over hours
+- **Sandwich attacks** where you take MEV losses on an otherwise healthy pool
+- **Honeypots** where you can never sell in the first place — handled by [Honeypot Guard](/safety/honeypot-guard)
+- **Insider dumps** where the dev sells a large supply allocation onto your bid — visible on the [Top Traders](/charts/token-detail-tabs) tab
+
+Different attacks, different defences. Drain detection is the dedicated defence against the most common one.
+
+## Why this matters
+
+In our internal testing across many months of meme-token launches, classic drain rugs are the single most common cause of catastrophic losses for traders who otherwise picked decent tokens. The losses come from being asleep at the wheel — being on a chart for *one* moment too long after the rug fires.
+
+Dequan's detector is designed to fire **before you've finished forming the thought "wait, what's happening to the price?"** That is the entire point.
+
+<Card title="Continue → Holder & Dev Surveillance" icon="users-viewfinder" href="/safety/holders-and-dev-surveillance" horizontal>
+  Live monitoring of concentration, snipers, and dev wallet behaviour.
+</Card>

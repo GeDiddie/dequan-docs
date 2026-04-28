@@ -1,0 +1,60 @@
+---
+title: "Parallel Landing"
+description: "Your signed transaction is broadcast across multiple landing paths simultaneously. The first one in wins."
+icon: "flag-checkered"
+---
+
+Submitting a Solana transaction is a probability problem. Network congestion, leader schedule, validator behaviour, and dozens of other factors mean that any single submission path has some chance of taking a while or failing entirely.
+
+Most tools accept this by submitting once and praying. Dequan does not.
+
+## The race
+
+The moment your transaction is signed, Dequan broadcasts it across **multiple landing paths in parallel** — different network routes that each have a chance of getting your trade into the very next block. The first path to confirm wins; the others are silently dropped.
+
+You don't choose a path. You don't toggle it on. The race happens automatically on every Dequan trade.
+
+The result, in normal conditions: confirmations land in well under one second. During congestion: trades that would revert or sit pending on a single-path tool still land on Dequan because at least one of the parallel paths usually finds inclusion.
+
+## Why this works
+
+The submission paths Dequan uses are deliberately **diverse** — they have different latencies, different congestion characteristics, different inclusion mechanisms. When one path is slow because of backpressure on its specific upstream, the others aren't. When the network is calm, any of them works fine. When the network is hostile, the geometric-mean speed across the set is dramatically better than any single path's worst case.
+
+In practice this means the **tail latency** — the slow trades, the ones that ruin your day — is much lower on Dequan than on a tool with a single submission lane.
+
+## The user-visible behaviour
+
+You don't see the race. You see:
+
+1. You press Snipe.
+2. The wallet signs (or a delegated key signs, if you're on Lightning Wallet or Fast Mode).
+3. Within roughly half a second, you have a signature back.
+4. Within another short window, the buy is confirmed and the token appears in your Racing Lanes.
+
+That's it. The complexity is invisible. Either the transaction lands or it doesn't, and the odds of "it lands" are dramatically improved by running multiple lanes.
+
+## What about duplicates?
+
+A Solana transaction has a unique signature, and the network deduplicates by signature. Submitting the same signed transaction across multiple paths cannot result in a duplicate fill — at most one copy can ever be included. The race is therefore safe, not chaotic.
+
+## What about failed transactions?
+
+If *every* lane fails to land, Dequan surfaces a clear failure to you immediately, including which paths were attempted and what each said. You can retry instantly with a single tap.
+
+When this happens, it is almost always a **legitimate** failure — slippage was actually exceeded, the pool was actually drained, the route became actually invalid. In those cases no submission path could have helped, and you want to know fast rather than wait silently for a confirmation that isn't coming.
+
+## What you can verify
+
+The [Latency Transparency](/reliability/latency-transparency) panel records, for every trade, which submission path landed it. Over a session you'll see the win distribution across paths — and on bad-network days you'll see the diversity earning its keep.
+
+This is the kind of internal observability most tools never expose. Dequan exposes it because we want you to understand the value, not just be told about it.
+
+## What this isn't
+
+It is not access to a "secret" RPC. It is not a single magic provider. It is **engineering discipline applied to the submission step** — the same way real high-frequency systems handle network reliability — adapted for the realities of trading on Solana.
+
+The honest summary: traditional submit-and-pray fails ~5–15% of the time during meme volatility, depending on how unlucky you are with leader schedule. Dequan's parallel race fails materially less. That difference compounds over hundreds of trades into a real edge.
+
+<Card title="Continue → Lightning Wallet" icon="bolt" href="/execution/lightning-wallet" horizontal>
+  Optional one-tap trading with no wallet popups.
+</Card>

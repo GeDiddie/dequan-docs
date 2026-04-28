@@ -1,0 +1,85 @@
+---
+title: "Key Handling"
+description: "How private keys, signatures, and authentication actually work in Dequan."
+icon: "key"
+---
+
+Most trading-tool docs hand-wave on this topic. We're going to be specific because security claims that aren't specific aren't claims, they're vibes.
+
+## Your main wallet
+
+Your main wallet's private key — the seed phrase you control, the keys for Phantom/Solflare/Backpack/hardware — **never enters Dequan's systems in any form.**
+
+- We do not request it.
+- We do not receive it.
+- We do not store it.
+- We have no recovery flow for it because there is nothing on our side to recover.
+
+Every signature for non-custodial trades originates from your wallet's signing surface (browser extension, mobile app, hardware device). Dequan receives the *signed result*, not the key.
+
+## Authentication: signed challenge, not key transmission
+
+When you "sign in" to Dequan, the system asks your wallet to sign a short, random message — a *challenge* — generated server-side specifically for this authentication attempt.
+
+The signed message proves you control the wallet's private key without transmitting it. The challenge is single-use: replaying the same signed message later doesn't work because the server only accepts that exact challenge once, and it expires within a short window if not used.
+
+The signature you produce is bound to:
+- The specific challenge string
+- A timestamp window
+- The Dequan domain
+
+A signed challenge captured by an attacker cannot be replayed against a different domain, a different time window, or a different challenge. The standard is the same as production-grade Sign-In-with-Solana implementations.
+
+## Session tokens, not key reuse
+
+After successful challenge auth, the server issues a short-lived **JWT** (JSON Web Token) that authenticates subsequent API calls during your session. The JWT:
+
+- Is signed by the server with a key you cannot forge
+- Expires automatically after a short window
+- Can be revoked instantly if needed (e.g., if you log out, hit a rate limit boundary, or the system detects abuse)
+
+This is the same auth pattern used by major financial APIs. It is conventional, well-understood, and battle-tested.
+
+## Lightning Wallet keys
+
+[Lightning Wallet](/execution/lightning-wallet) is the only place where Dequan holds key material on your behalf — and it is held inside a **hardware-backed key management boundary** that meets institutional-custody standards. Operators cannot read the key. The system can only use the key to sign trades that match enabled rules.
+
+The funds in Lightning Wallet are sandboxed: capped balance, withdrawable any time, never silently transferred elsewhere. The key handling for Lightning is more rigorous than industry-standard "encrypt at rest" — see [Lightning Wallet](/execution/lightning-wallet) for details.
+
+## Fast Mode keys
+
+[Fast Mode](/execution/fast-mode) uses a **session key** generated specifically for the trading session, with on-chain delegation that strictly bounds what it can sign. The session key itself is treated with the same hardware-backed handling as Lightning Wallet keys, but its scope is limited by on-chain rules, not just by server-side policy.
+
+Revoking a Fast Mode session is **immediate** — the on-chain delegation is canceled, after which the session key is cryptographically incapable of signing anything that would affect your wallet.
+
+## What we log, what we don't
+
+Logged for operational and audit purposes:
+
+- Public addresses
+- Trade signatures (already public on chain)
+- Per-trade timing data
+- Errors and rate-limit events
+
+**Never** logged:
+
+- Private keys (we don't have them)
+- Wallet seed material (we don't have it)
+- Session tokens beyond what's needed to validate the active session
+- Personal identifying information beyond what you voluntarily provide
+
+## What you should still do
+
+Even with all of the above, **basic wallet hygiene is on you**:
+
+- Use a hardware wallet for long-term holdings.
+- Use Dequan with a wallet whose balance you'd be ok losing if your machine were compromised.
+- Don't paste your seed into anything, ever.
+- Verify the URL is `snipe.dequan.xyz` before connecting.
+- Verify the URL of any wallet popup matches.
+
+We can secure our half of the contract. We can't secure your laptop.
+
+<Card title="Continue → Referral Anti-Abuse" icon="user-shield" href="/safety/referral-anti-abuse" horizontal>
+  How the referral system prevents farming and self-referral abuse.
+</Card>

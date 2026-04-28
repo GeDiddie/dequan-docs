@@ -1,0 +1,75 @@
+---
+title: "What makes Dequan different"
+description: "The honest, head-to-head answer."
+icon: "sparkles"
+---
+
+There are dozens of Solana trading tools. They are all essentially the same product: **a list of tokens with a buy button.** Faster scrolling, prettier rows, slightly better filters — but the same paradigm.
+
+Dequan is a different paradigm.
+
+## The four ideas no one else is building
+
+<Steps>
+  <Step title="Discovery should be spatial, not tabular" icon="radar">
+    Human pattern recognition is wasted on rows. We rebuilt the feed as a live spatial map — a **field** where tokens move by market cap and rise by velocity. Your eye will lock onto a launching token *before* it would ever surface to the top of a sorted list.
+
+    [→ See the Pump Zone](/pump-zone/overview)
+  </Step>
+
+  <Step title="The trade should be ready before you decide" icon="bolt">
+    Every other tool starts the work *after* you click Buy. Dequan starts the work the instant you open the chart. By the time you press the button, the route is chosen, the quote is fresh, the transaction is staged. **Click-to-signature is what's left.**
+
+    [→ Pre-execution warmup](/execution/pre-execution-warmup)
+  </Step>
+
+  <Step title="Landing is a parallel race, not a sequential hope" icon="bolt-lightning">
+    A signed transaction goes out **multiple landing paths in parallel**. The fastest path wins. Other tools submit once and pray. We treat block inclusion the way Formula 1 treats a pit stop.
+
+    [→ Parallel landing](/execution/parallel-landing)
+  </Step>
+
+  <Step title="Safety is on by default, not a paid add-on" icon="shield-check">
+    Every Dequan user — including free Scout users with no signup — gets honeypot detection, liquidity drain monitoring, holder concentration tracking, dev wallet surveillance, and full fee transparency. **No tier upgrade required for safety.** Ever.
+
+    [→ Safety overview](/safety/overview)
+  </Step>
+</Steps>
+
+## The honest comparison
+
+We don't name competitors in a public document because that's tacky. But here's the honest gap, framed by capability:
+
+| Capability | Traditional scanners | Telegram bots | Dequan |
+|---|---|---|---|
+| **Spatial momentum feed** | List view | Text alerts | **Live field map** |
+| **Velocity & acceleration signals** | 24h % change | Pump alerts | **Per-second momentum + derivative** |
+| **Live racing dashboard for holdings** | Holdings list | Wallet ping | **Animated lanes with one-tap exits** |
+| **Pre-execution warmup** | Builds at click | Builds at click | **Pre-warms on chart open** |
+| **Parallel landing race** | Single submit | Single submit | **Multi-path simultaneous broadcast** |
+| **Adaptive priority fees** | Static defaults | Static defaults | **Live network percentile streaming** |
+| **Adaptive slippage** | User chooses | User chooses | **Auto-tuned per token & size** |
+| **Honeypot guard** | Often missing | Sometimes | **Always on, every drawer open** |
+| **Liquidity drain detection** | USD oracle | USD oracle | **Direct on-chain pool reserves** |
+| **Latency transparency** | None | None | **End-to-end checkpoint timeline** |
+| **Optional custodial fast wallet** | None | Custodial-only | **Optional, KMS-secured, withdrawable any time** |
+| **Free tier with full features** | Often crippled | Often paid | **Every feature, free** |
+
+## Why we can do this
+
+Dequan isn't a wrapper around someone else's API. We built our own layers:
+
+- **Our own data fan-out** so one upstream connection serves thousands of users without saturating the source.
+- **Our own pre-execution pipeline** so most of the trade is done before you decide to do it.
+- **Our own multi-path landing engine** so transactions don't depend on a single submission lane.
+- **Our own observability stack** so we know — and *show* — when something is degraded.
+
+Every piece is owned end to end. That's how it stays this fast and this transparent.
+
+## We're not asking you to take our word for it
+
+The whole product is free on Scout. Connect a wallet, run one trade, watch the timeline panel afterward, and decide.
+
+<Card title="Try it now" icon="rocket" href="https://snipe.dequan.xyz" horizontal>
+  No signup. No download. Just a Solana wallet and 30 seconds.
+</Card>

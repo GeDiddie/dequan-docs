@@ -1,0 +1,49 @@
+---
+title: "Non-Custodial First"
+description: "Your keys, your wallet, your signatures. Custodial mode is optional and sandboxed."
+icon: "wallet"
+---
+
+The default Dequan experience is **fully non-custodial**. You connect a wallet you already control — Phantom, Solflare, Backpack, Glow, hardware wallet — and every trade you make is signed by that wallet. Dequan never sees your private key, never has the ability to move your funds, never holds custody of anything.
+
+You can use the entire platform — Pump Zone, charts, Sniper List, exits, milestones, leaderboards — in this mode. There is no feature that *requires* custodial signing. There are features that benefit from it (anything where popup latency matters), but nothing that demands it.
+
+## What "non-custodial" means here
+
+<Card title="Your wallet signs every transaction" icon="signature">
+  When you press Snipe in non-custodial mode, your wallet's signing prompt appears. You approve. The signed transaction is then broadcast through Dequan's [parallel landing](/execution/parallel-landing) pipeline. The signature is yours; the speed pipeline is ours.
+</Card>
+
+<Card title="Dequan stores no private material for your main wallet" icon="lock">
+  We store your *public* address (so we can show your balances and trade history). We never store, never request, never receive your seed phrase or private key. There is no recovery flow on our side because there is nothing to recover — your wallet is your wallet.
+</Card>
+
+<Card title="Auth is challenge-response, not key transmission" icon="message-check">
+  When you "sign in" to Dequan, your wallet signs a short, random challenge message. The signed message proves you control the wallet without giving us anything that could be replayed elsewhere. See [Key Handling](/safety/key-handling) for detail.
+</Card>
+
+## Optional custodial paths (and why they exist)
+
+Two optional features involve more delegated signing:
+
+- **[Lightning Wallet](/execution/lightning-wallet)** — a sandboxed custodial wallet that Dequan creates and funds-only for fast one-tap trading. You decide how much to fund it. Withdrawable any time.
+- **[Fast Mode](/execution/fast-mode)** — session-key delegation against your main wallet, with hard caps on amount, slippage, fees, and routes. No funds move into Dequan; only signing authority is delegated, capped, and revocable.
+
+Both exist purely for speed. Neither is required to use Dequan. You can scout, snipe, hold, and exit using only your main wallet's manual signing prompts and you'll have access to every feature on the platform.
+
+## Why the option matters
+
+Some traders need to be fast. Others need to be philosophically clean about custody. Dequan does not force the choice. The default leans cautious; the upgrades are clearly marked and clearly bounded.
+
+What we will *never* do:
+
+- Hide a custodial flow behind a misleading UI.
+- Auto-enrol users in delegated signing without explicit action.
+- Hold more of your funds than the cap you set.
+- Charge a fee to withdraw your own money.
+
+The contract is simple: **your funds are yours; we are an interface, not a custodian, except in the narrow opt-in scopes you explicitly enable.**
+
+## The bottom line
+
+If you read nothing else from the safety section: **you can use Dequan exactly the way you'd use any non-custodial dApp**, with no compromises on access to features. The speed-related conveniences are paid for in opt-in surface area, not in default custody.

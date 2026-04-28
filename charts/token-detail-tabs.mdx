@@ -1,0 +1,58 @@
+---
+title: "Token Detail Tabs"
+description: "Live trades, holders, top traders, dev history — all in one panel."
+icon: "layer-group"
+---
+
+Below every token's chart sits a tabbed information panel — the same surface you'd otherwise need three separate scanner tools to assemble.
+
+## The four tabs
+
+<Tabs>
+  <Tab title="Trades">
+    A live tape of every buy and sell as it confirms. Wallet (shortened), side, SOL value, token amount, USD value, time. The newest trades arrive at the top in real time.
+
+    This is the closest thing to *being in the order book*. You can see the size and cadence of buying, when whales are exiting, when coordinated activity hits.
+  </Tab>
+
+  <Tab title="Holders">
+    A live snapshot of the top 10 holders by percentage of supply. Updates as on-chain transfers happen.
+
+    High concentration in the top 10 is the single most reliable warning sign for a meme token. If three wallets hold 60% of supply, you are not trading a market — you are trading three people's mood. The Holders tab makes this immediate.
+  </Tab>
+
+  <Tab title="Top Traders">
+    The wallets generating the most volume in this token *recently*. Lets you spot smart money, coordinated buying, or a single whale running the price.
+
+    Loaded on demand when you tap the tab — no impact on chart performance if you're not using it.
+  </Tab>
+
+  <Tab title="Dev Tokens">
+    Every other token deployed by the same creator wallet. One-tap reputation lookup.
+
+    If the deployer has 47 tokens in the last week and they all rugged, that's information you want before you size in. The Dev Tokens tab gives it to you in two seconds.
+  </Tab>
+</Tabs>
+
+## Why this exists
+
+Before Dequan, "due diligence" on a Solana meme token meant opening four browser tabs:
+
+1. The chart on a charting site
+2. A holders explorer
+3. A separate "smart money" tracker
+4. A separate dev-history tracker
+
+By the time you'd assembled the picture, the entry was gone.
+
+Token Detail Tabs collapse that workflow into one panel. The tabs are colocated with the chart and the buy panel. **The full risk picture is on one screen, refreshing live, while you decide.**
+
+## Lazy loading where it makes sense
+
+The Trades and Holders tabs stream live the moment the drawer opens — they're cheap to maintain because Dequan's [data fan-out](/reliability/health-indicators) does the heavy lifting upstream.
+
+Top Traders and Dev Tokens are loaded on tab activation only. They require additional lookup work and there's no reason to do it for every token you scroll past. Tap the tab → it loads in a fraction of a second → the data appears.
+
+## What this means in practice
+
+Most trading mistakes are made because the trader didn't have the right context at the moment of decision. Dequan's whole UI design is built to put context *next to the decision*. The Token Detail Tabs are the densest version of that — every piece of context, one tap from the buy button.

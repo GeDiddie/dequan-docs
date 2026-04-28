@@ -1,0 +1,92 @@
+---
+title: "The Execution Philosophy"
+description: "Why a Dequan trade lands while other tools are still building the transaction."
+icon: "bolt"
+---
+
+Latency is not a single number. It is a pipeline of steps, each of which costs time, and the trader who minimises **the longest step** wins.
+
+Most trading tools attack one step. Dequan attacks all of them.
+
+## The five-step cost of a trade
+
+Every meme-token buy on Solana goes through roughly five steps:
+
+<Steps>
+  <Step title="Decide" icon="brain">
+    The trader sees the token and decides to buy.
+  </Step>
+  <Step title="Quote" icon="magnifying-glass-dollar">
+    The platform fetches a current quote from the best route — what you'll pay, what you'll get.
+  </Step>
+  <Step title="Build" icon="hammer">
+    The platform builds a transaction — instructions, accounts, recent blockhash, priority fee.
+  </Step>
+  <Step title="Sign" icon="signature">
+    The transaction is signed, either by the user's wallet (popup) or a delegated session key.
+  </Step>
+  <Step title="Land" icon="rocket">
+    The signed transaction is broadcast to the network and lands in a block.
+  </Step>
+</Steps>
+
+The total click-to-confirmation time is the sum of those five steps. Most tools optimise step 5 ("we use Jito!") and ignore the rest. Dequan optimises every step.
+
+## How Dequan's pipeline is shaped
+
+<Card title="Steps 2 and 3 happen *before* you click" icon="forward">
+  The instant you open a token's chart, Dequan begins quote-prefetching and route-warming in the background. By the time you decide to buy, the quote is fresh and the build is staged. **The "build" step is essentially zero by the time you press the button.**
+
+  [→ Pre-execution warmup](/execution/pre-execution-warmup)
+</Card>
+
+<Card title="Step 4 can be near-instant" icon="bolt-lightning">
+  With **Lightning Wallet** or **Fast Mode**, the signing step is server-side or session-key signed — no Phantom popup, no user wait. You stay non-custodial if you choose, but you don't have to pay popup latency on every trade.
+
+  [→ Lightning Wallet](/execution/lightning-wallet) · [→ Fast Mode](/execution/fast-mode)
+</Card>
+
+<Card title="Step 5 is a parallel race" icon="flag-checkered">
+  Your signed transaction is broadcast across multiple landing paths **simultaneously**. The first path to land wins. Other tools submit once and pray; Dequan treats block inclusion as a multi-lane race.
+
+  [→ Parallel landing](/execution/parallel-landing)
+</Card>
+
+<Card title="Fees and slippage adapt to live conditions" icon="sliders">
+  Priority fees are derived from a live network percentile feed. Slippage is auto-tuned to the price impact of the specific quote and pool depth. Both adjust per trade, per token, per moment.
+
+  [→ Adaptive fees & slippage](/execution/adaptive-fees-and-slippage)
+</Card>
+
+## The result, in plain English
+
+The user-visible effect of all this is simple: **your trade lands, on the first try, in well under one second** under normal network conditions. You don't see anything in the UI about "races" or "warmups." You just see that the buy works. Every time.
+
+The speed gap is most visible when conditions get hard:
+
+- **During pump events**, when the network is congested and other tools' transactions revert, Dequan's adaptive priority fees keep your trade in the priority lane.
+- **When pools are shallow**, where other tools' static slippage either fails the trade or eats your profits, Dequan's adaptive slippage threads the needle.
+- **On migration tokens** that switch pools mid-trade, where other tools' route caches go stale, Dequan's pre-execution warmup re-validates routes continuously.
+
+These are the moments where speed actually matters. Dequan was engineered for them.
+
+## What this is not
+
+It is not magic. It is not "we have a secret RPC." It is a careful, end-to-end pipeline where every step has been optimised by people who care about milliseconds.
+
+It is also not invisible. Every Dequan trade is logged with full per-stage latency you can inspect afterward in the [Latency Transparency](/reliability/latency-transparency) panel. We don't ask you to trust the speed — we let you see it.
+
+<CardGroup cols={2}>
+  <Card title="Pre-execution warmup" icon="forward" href="/execution/pre-execution-warmup">
+    What happens in the background when you open a chart.
+  </Card>
+  <Card title="Parallel landing" icon="flag-checkered" href="/execution/parallel-landing">
+    The multi-path broadcast that gets your tx into the block first try.
+  </Card>
+  <Card title="Lightning Wallet" icon="bolt" href="/execution/lightning-wallet">
+    Optional one-tap trading with no popups, withdrawable any time.
+  </Card>
+  <Card title="Fast Mode" icon="forward-fast" href="/execution/fast-mode">
+    Session-key delegation — keep your main wallet offline, sign once.
+  </Card>
+</CardGroup>

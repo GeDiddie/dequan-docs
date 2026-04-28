@@ -1,0 +1,58 @@
+---
+title: "Honeypot Guard"
+description: "Simulation-based detection of unsellable tokens — runs the moment you open a chart."
+icon: "shield-virus"
+---
+
+A "honeypot" is a token you can buy but cannot sell. The contract has a transfer restriction, a sell tax of 100%, a blacklist mechanism, or some other surprise that lets the deployer take your buys without ever letting your sells through. They are the single most common bait-and-switch on Solana.
+
+Dequan catches them automatically.
+
+## How it works
+
+The instant you open a token's chart drawer, Dequan runs a **simulated sell** against the live on-chain state of the token's pool. The simulation builds a sell transaction the way a real one would be built and asks the network to dry-run it — no actual transaction is broadcast, no funds are moved, no fees are paid.
+
+If the simulation fails for any reason that indicates non-sellability:
+
+- The contract refuses the transfer
+- The route reverts
+- The slippage required is absurd
+- The token has restrictions that fire at sell time
+
+Dequan flags the token immediately. A red shield appears on the chart, the buy panel is disabled with an explicit warning, and the token's [TQS](/charts/token-quality-score) is force-pulled to a low band.
+
+You cannot buy a flagged token through Dequan's standard buy path without explicitly bypassing the warning, and the warning is unmissable.
+
+## Why this matters
+
+Most traders who lose money to honeypots lose it because they were too excited to check. They saw the chart, saw the green candles, saw other people apparently buying — and didn't realise that the only people who could *sell* were the deployer and a few whitelisted addresses.
+
+By the time the realisation hits, the deployer has rugged.
+
+Dequan checks for you, on every token, before you can possibly tap Buy. The check happens in the background while the chart is loading; the result is on screen before you've decided whether to scroll the metrics.
+
+## Zero buy-path latency
+
+The honeypot simulation does **not** sit in the buy path. It runs on chart-open, asynchronously, alongside the metrics fan-out. The buy path itself is unblocked — if a token is clean, your buy goes through with no added latency.
+
+The only time the buy path is blocked is when the simulation has *already returned a fail*, in which case blocking the buy is the entire point.
+
+## Works without authentication
+
+The honeypot guard runs even for unauthenticated browsing. You don't need a wallet connected. You don't need a tier. You can be casually browsing the Pump Zone as a visitor and the guard is still protecting you.
+
+This is one of the safety features that **everyone gets, regardless of tier, regardless of login state**, on every token they look at.
+
+## Edge cases
+
+A simulation can return a false negative if a token has a *time-delayed* trap (e.g., sells are allowed for the first hour, then restricted). Dequan re-runs the simulation periodically while a chart is open, but a determined adversary with a time-locked trap can defeat any single-shot simulation.
+
+This is one of the reasons Dequan layers honeypot guard with [liquidity drain detection](/safety/liquidity-drain-detection) and [holder/dev surveillance](/safety/holders-and-dev-surveillance) — different patterns of malice trip different guards.
+
+## What the user sees
+
+- ✅ **No flag** → token simulated cleanly. Buy panel works normally.
+- ⚠️ **Yellow flag** → simulation was inconclusive (e.g., pool is too shallow to simulate reliably). Proceed with caution.
+- 🛑 **Red flag** → simulation indicates non-sellable. Buy disabled with explicit warning.
+
+The flag updates live as conditions change. If a token starts clean and turns honeypot mid-session (a known attack pattern), the flag flips and you're alerted immediately even if the chart is sitting in the background.

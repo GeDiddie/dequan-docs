@@ -1,0 +1,117 @@
+---
+title: "The Pump Zone"
+description: "We rebuilt token discovery from the ground up. This is what came out."
+icon: "radar"
+---
+
+## The premise
+
+Token launches are visual events. A coin doesn't just "go up" — it accelerates, breaks through, leaves a trail, attracts a crowd, then either explodes or burns out. **You can see that.** A list cannot.
+
+Every Solana trading tool today renders the market as a **table**. Rows of mint addresses, columns of percent-change. The interface throws away every cue our visual system is good at: motion, trajectory, density, formation, contrast.
+
+The Pump Zone exists because we asked one question: *what would it look like if a feed could actually breathe?*
+
+## The mental model
+
+The Pump Zone is a **live field**. Tokens are objects on the field. Their position is meaningful. Their motion is meaningful.
+
+<Frame>
+<svg viewBox="0 0 600 320" width="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram of the Pump Zone axes">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0E7490" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#0E7490" stop-opacity="0.02"/>
+    </linearGradient>
+  </defs>
+  <rect x="40" y="20" width="540" height="260" rx="8" fill="url(#bg)" stroke="#22D3EE" stroke-opacity="0.4"/>
+  <line x1="40" y1="280" x2="580" y2="280" stroke="#22D3EE" stroke-width="2"/>
+  <line x1="40" y1="20" x2="40" y2="280" stroke="#22D3EE" stroke-width="2"/>
+  <text x="310" y="305" fill="#67E8F9" font-family="ui-sans-serif" font-size="14" text-anchor="middle">Market cap →  (smaller ←  larger)</text>
+  <text x="20" y="150" fill="#67E8F9" font-family="ui-sans-serif" font-size="14" text-anchor="middle" transform="rotate(-90 20 150)">↑ Velocity ↑</text>
+  <circle cx="120" cy="240" r="7" fill="#67E8F9" opacity="0.6"/>
+  <circle cx="220" cy="170" r="9" fill="#22D3EE"/>
+  <circle cx="320" cy="80"  r="11" fill="#FACC15"/>
+  <circle cx="430" cy="200" r="8"  fill="#67E8F9" opacity="0.7"/>
+  <circle cx="510" cy="260" r="6"  fill="#67E8F9" opacity="0.4"/>
+  <text x="320" y="60" fill="#FACC15" font-family="ui-sans-serif" font-size="12" text-anchor="middle">Mooning</text>
+  <text x="220" y="155" fill="#22D3EE" font-family="ui-sans-serif" font-size="12" text-anchor="middle">Pumping</text>
+  <text x="120" y="225" fill="#67E8F9" font-family="ui-sans-serif" font-size="12" text-anchor="middle">Awakening</text>
+</svg>
+</Frame>
+
+- **Horizontal position = market cap.** Newborn tokens enter from the left. Maturing tokens drift right.
+- **Vertical position = velocity.** Fast climbers rise. Cooling tokens sink.
+- **Glow & motion = life.** A flash means a fresh trade hit. A glide means the token is moving through MC space.
+
+Once you've used it for ten minutes, you stop "reading" the field. You start *feeling* it. The pattern recognition that experienced traders developed over years of staring at lists — Dequan gives that to a beginner in their first session.
+
+## Velocity bands
+
+The vertical axis isn't just continuous — it's banded into four kinetic states:
+
+<CardGroup cols={2}>
+  <Card title="Awakening" icon="hourglass-start" iconType="duotone">
+    Just stirring. First buyers arriving. Almost-zero velocity but trending positive.
+  </Card>
+  <Card title="Building" icon="chart-line" iconType="duotone">
+    Steady climb. Sustained green ticks. Real momentum forming.
+  </Card>
+  <Card title="Pumping" icon="rocket" iconType="duotone">
+    Rapid acceleration. Crowd notices. Volatility rising.
+  </Card>
+  <Card title="Mooning" icon="sparkles" iconType="duotone">
+    Explosive vertical move. Often unsustainable, often the trade.
+  </Card>
+</CardGroup>
+
+You can filter the field to **only** the bands you care about. Looking for early entries? Show Awakening + Building. Hunting parabolas? Show Pumping + Mooning. Your eye stops competing with noise.
+
+## What's on the field
+
+<Card title="Milestone markers" icon="flag">
+  Field markers at meaningful market caps ($5K, $10K, $50K, $100K, $500K). When a token crosses a marker, you see it cross — visibly. Crossing $100K MC for the first time is a real event, and it looks like one.
+</Card>
+
+<Card title="Inline micro-history" icon="chart-simple">
+  Every token glyph carries a tiny sparkline of recent candles. You can read the trend without opening a chart. The Pump Zone gives you "is this real?" at a glance.
+</Card>
+
+<Card title="The Leaderboard strip" icon="trophy">
+  A horizontal ribbon above the field surfaces the top movers right now — ranked by recent velocity, volume, or magnitude depending on your sort. Click any leader to lock the field onto it.
+</Card>
+
+<Card title="Spotlight picks" icon="binoculars">
+  Algorithmic highlights that the system thinks deserve a closer look — based on signal cluster, not paid promotion. Spotlights are surfaced with a cyan ring on the field and at the top of the leaderboard.
+</Card>
+
+<Card title="Action tray" icon="hand-pointer">
+  Tap any token and a tray slides up with: the live chart, a Scout report (risk + signals), Quick Snipe with your bet-size chip, and an "Open in Sniper List" escape hatch for analyst-mode work.
+</Card>
+
+## Why the field is faster than a list
+
+A sorted list rerenders top-to-bottom on every update. The interesting token has to travel from rank 47 to rank 3 over multiple frames before you'd ever see it. Your eye is reading the wrong part of the screen.
+
+The field doesn't sort. It **places**. A token doesn't "rise to rank 3" — it rises *visibly*, in real space, on the same frame the trade hit our edge. You don't have to scan a list. You just notice the motion.
+
+This is also why Dequan can render the entire active market without making your laptop into a furnace: position math is constant-time per token, and the canvas only repaints regions that changed.
+
+## Where it goes from here
+
+The Pump Zone is not just a feed view — it's the surface for everything else Dequan does:
+
+<CardGroup cols={2}>
+  <Card title="Spatial feed deep-dive" icon="map" href="/pump-zone/spatial-feed">
+    Why position is meaningful, how the field zooms, and how to read formations.
+  </Card>
+  <Card title="Velocity & momentum signals" icon="gauge-high" href="/pump-zone/velocity-and-momentum">
+    The kinetic state machine, acceleration, and the gold velocity line.
+  </Card>
+  <Card title="The Racing Lanes HUD" icon="flag-checkered" href="/pump-zone/racing-lanes">
+    Your live positions become lanes on the field. Exits become one tap.
+  </Card>
+  <Card title="Milestones, captures & outcome cards" icon="medal" href="/pump-zone/milestones-and-grades">
+    The trading-discipline layer. Why we grade every trade.
+  </Card>
+</CardGroup>

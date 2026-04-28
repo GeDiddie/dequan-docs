@@ -1,0 +1,87 @@
+---
+title: "Quickstart"
+description: "Your first Dequan trade, end to end, in under a minute."
+icon: "rocket"
+---
+
+You don't need an account. You don't need a credit card. You don't need to read a manual. You need a Solana wallet and one minute.
+
+## 1. Open Dequan
+
+<Card title="snipe.dequan.xyz" icon="globe" href="https://snipe.dequan.xyz" horizontal>
+  Hosted on Cloudflare's global edge. Loads in any browser, on any device.
+</Card>
+
+## 2. Connect a wallet
+
+Phantom, Solflare, or Backpack. One tap, one signature. We never see your private key. There is no "create a Dequan account" step — the wallet **is** your account.
+
+<Note>
+The signature you sign during connect is a **proof-of-ownership challenge**, not a transaction. It moves zero SOL and authorises nothing on-chain. It exists so we can prove you control the wallet without holding any keys.
+</Note>
+
+## 3. Enter the Pump Zone
+
+This is the home view. Tokens flow across the field as live data arrives. Position on the field tells you everything you need to know:
+
+- **Horizontal** — market cap. Smaller tokens on the left, larger on the right.
+- **Vertical** — velocity. Tokens rising fast in price drift upward; tokens cooling drift downward.
+- **Glow & motion** — fresh trades flash. Sustained climbers leave a trail.
+
+Your eye will pick out movement before any leaderboard could rank it. That is the entire design.
+
+<Tip>
+You can switch into **Sniper List** mode for a traditional analyst view at any time. The same data, presented as a sortable table with charts inline.
+</Tip>
+
+## 4. Tap a token
+
+A drawer opens with a live chart, holders breakdown, dev history, recent trades, and a buy panel with **Quick Snipe** preset to your default size.
+
+The instant the drawer opens, Dequan begins preparing the trade in the background — fetching a quote, warming the route, lining up everything execution needs. By the time you choose to buy, almost nothing is left to do.
+
+## 5. Buy
+
+Press **Snipe**. Approve the wallet prompt. Done.
+
+Your transaction is dispatched across multiple landing paths simultaneously. Whichever lane lands first becomes your fill. You get a signature in seconds, often in well under one second.
+
+The token immediately appears as a lane in the **Racing Lanes HUD** — your live position glides forward as price moves, milestones flash as you cross them, and one-tap exits live right on the lane.
+
+## 6. Exit when you're ready
+
+- **One-tap presets** — sell 25%, 50%, 75%, or all of a position from the lane itself.
+- **Take Profit Now** — single button, plain English, no menus.
+- **Outcome card** — every closed trade ends with a one-screen summary so you can learn from your own pattern.
+
+That is the whole loop. You are now trading on Dequan.
+
+## What just happened, technically
+
+Behind that minute, Dequan's systems quietly:
+
+- Streamed live token metrics from a fan-out pipeline so your browser never opens upstream connections directly.
+- Pre-warmed your trade so the click-to-signature path was as short as the network would allow.
+- Race-broadcast your signed transaction across multiple landing paths to maximise the odds of landing in the next block.
+- Validated the token was not a honeypot before you even saw the chart.
+- Watched the pool's liquidity in real time and would have warned you instantly if it drained.
+- Logged every checkpoint of the trade so you can see exactly where time was spent.
+
+You didn't see any of that. You shouldn't have to. **Dequan does the engineering so you can do the trading.**
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="The Pump Zone, explained" icon="radar" href="/pump-zone/overview">
+    The full mental model behind the spatial feed.
+  </Card>
+  <Card title="Lightning Wallet" icon="bolt" href="/execution/lightning-wallet">
+    Optional one-tap trading mode. No popups, no friction, your funds.
+  </Card>
+  <Card title="Safety overview" icon="shield-check" href="/safety/overview">
+    Every protective system Dequan runs on your behalf.
+  </Card>
+  <Card title="Why Scout (free) is the full product" icon="gift" href="/tiers/scout">
+    Read this if you think this is too good to be free.
+  </Card>
+</CardGroup>

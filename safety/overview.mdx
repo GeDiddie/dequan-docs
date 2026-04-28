@@ -1,0 +1,62 @@
+---
+title: "Safety by Default"
+description: "Every safety system Dequan runs is on for everyone, all the time, free."
+icon: "shield-halved"
+---
+
+The single most important thing about Dequan's safety design is that **safety is not a feature you upgrade to**. It's not gated, it's not optional, it's not Pro-tier. It runs for every user, on every token, all the time.
+
+The thesis: we want our users to survive long enough to compound. Cheap rugs are everywhere on Solana. The best traders aren't the ones who pick the most winners — they're the ones who avoid the most catastrophic losses. So Dequan does the catching for you.
+
+## What runs automatically
+
+<CardGroup cols={2}>
+  <Card title="Honeypot Guard" icon="shield-virus" href="/safety/honeypot-guard">
+    Simulation-based detection of unsellable tokens — runs the moment a chart opens, before you can buy.
+  </Card>
+  <Card title="Liquidity Drain Detection" icon="droplet-slash" href="/safety/liquidity-drain-detection">
+    On-chain pool reserves are watched live; if the pool is being drained, you're alerted before the price catches up.
+  </Card>
+  <Card title="Holder & Dev Surveillance" icon="users-viewfinder" href="/safety/holders-and-dev-surveillance">
+    Top-10 concentration, dev hold, snipers, bundlers, insiders — streamed continuously and visible at a glance.
+  </Card>
+  <Card title="Fee Transparency" icon="receipt" href="/safety/fee-transparency">
+    Every fee Dequan ever charges you is tracked cumulatively and surfaced in your PnL.
+  </Card>
+  <Card title="Key Handling" icon="key">
+    Keys never leave the user. Server-side signing operations are isolated in hardware-backed boundaries. No private material in the browser.
+
+    [→ Key handling](/safety/key-handling)
+  </Card>
+  <Card title="Referral Anti-Abuse" icon="user-shield" href="/safety/referral-anti-abuse">
+    Automatic detection of farming, sybil patterns, and self-referral. Real referrers are rewarded; gamers are throttled.
+  </Card>
+</CardGroup>
+
+## What's optional
+
+<Card title="Non-custodial first" icon="wallet" href="/safety/non-custodial-first">
+  Lightning Wallet is opt-in. Default mode is fully non-custodial — your main wallet, your signatures, period. You can use Dequan end-to-end without ever giving up custody of a single satoshi.
+</Card>
+
+## The principle
+
+A trading tool that lets you lose your shirt to obvious scams is **not** a fast trading tool. It is a fast losing tool.
+
+Speed without safety compounds the wrong way. Dequan was designed by traders who lost real money to honeypots and rugs in the early days, and we are not letting that happen to our users if we can possibly help it.
+
+This is also why we don't gate safety behind tiers. Charging more for "premium fraud protection" would be philosophically gross. Safety belongs to everyone.
+
+## What Dequan does *not* claim
+
+We do not claim to catch every rug. The on-chain space is adversarial and creative; new exploit patterns emerge regularly. What we do claim:
+
+- **The known patterns are caught.** Honeypots, drain attacks, dev exits, concentration risks — all monitored.
+- **The information is surfaced fast.** When something is wrong, you know within seconds, not minutes.
+- **The default is "be careful."** When the platform is uncertain, it errs toward warning you.
+
+If you're using Dequan and you see no warnings, that's not a guarantee — it's an absence of detected red flags. You should still apply judgment. But the obvious traps are filtered out before you can fall into them.
+
+<Card title="Continue → Non-custodial first" icon="wallet" href="/safety/non-custodial-first" horizontal>
+  How wallet keys and custody actually work in Dequan.
+</Card>

@@ -1,0 +1,52 @@
+---
+title: "Adaptive Fees & Slippage"
+description: "Static defaults are why your transactions revert. Dequan tunes both, live, per trade."
+icon: "sliders"
+---
+
+Two of the most common ways a meme-token trade fails are mis-set priority fee (your transaction never gets included) and mis-set slippage (your transaction reverts at execution). Both are solved problems if you have the data — and Dequan has the data.
+
+## Adaptive priority fees
+
+Priority fees on Solana are how transactions buy their way into the next block. During calm periods, almost no priority fee is needed. During pumps, the priority lane fills and competition for inclusion pushes the required fee orders of magnitude higher.
+
+Most trading tools handle this with a **static default** — say, 500 µ◎ per compute unit, set once and forgotten. The result:
+
+- During calm, you overpay. Your trade lands fine, but you waste fees.
+- During pumps, you underpay. Your trade either takes 30 seconds to land or doesn't land at all.
+
+Dequan instead derives the priority fee from a **live network percentile feed**. The required fee at this moment, on this network, for the priority tier you've selected, is computed continuously. When you submit, the fee on your transaction is calibrated to *current conditions*, not yesterday's.
+
+Three priority tiers are available — **P1**, **P2**, **P3** — each anchored to a different percentile. Higher tiers get into earlier blocks at higher fee cost. Sniper and Apex traders typically run P3; Scout traders typically run P1 or P2 depending on bet size.
+
+The fee level is shown in the buy panel before you click and recorded in the trade history afterward, so you always know exactly what you paid for landing.
+
+## Adaptive slippage
+
+Slippage is the maximum acceptable price drift between quote and fill. Set it too tight and your trade reverts when the price ticks even a hair against you. Set it too loose and you accept any fill — including a fill 30% worse than you expected.
+
+Most tools default to a flat number — 5% or 10% — applied to every trade regardless of pool depth. The result:
+
+- On deep pools, you accept far more slippage than necessary.
+- On shallow pools or fresh launches, the default is sometimes too tight and trades revert.
+
+Dequan computes a **recommended slippage per quote**. Every quote returned by the upstream pipeline carries a `priceImpactPct` derived from the route and your bet size. The recommended slippage is calibrated against that impact, with safety margins, with floors and ceilings to prevent ridiculous extremes.
+
+You see the recommended slippage in the buy panel. You can override it (the system will not stop you from doing something foolish on purpose), but the default is right for the pool you're actually trading.
+
+## What this looks like in practice
+
+| Scenario | Static-tool outcome | Dequan outcome |
+|---|---|---|
+| Deep pool, calm market, $50 trade | Wastes priority fee, accepts 5% slippage on a 0.1% impact pool | Cheap priority fee, recommends ~0.5% slippage |
+| Fresh launch, $50 trade | Static 5% slippage often too tight; reverts on micro-moves | Recommends 8–12% slippage, lands cleanly |
+| Mid-cap during a pump | 500 µ◎ default, never lands | Live network percentile, lands first try |
+| Migration token shifting pools | Stale route, reverts | Pre-execution warmup catches the shift |
+
+You're not configuring any of this. You're choosing a tier (P1/P2/P3) and a slippage mode (auto-recommended or manual override), and Dequan handles the rest.
+
+## You can audit it
+
+Every trade you execute records what fee level was used, what slippage was accepted, and what the actual fill ended up being. The [Latency Transparency](/reliability/latency-transparency) panel includes this data so you can see the relationship between your settings, network conditions, and outcomes over time.
+
+The point is to make this a **system you trust**, not a black box. The defaults are right for almost every trader almost all the time. The data is there for the few who want to verify.

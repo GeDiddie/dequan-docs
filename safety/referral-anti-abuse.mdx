@@ -1,0 +1,82 @@
+---
+title: "Referral Anti-Abuse"
+description: "Real referrers earn real rewards. Farmers, sybils, and self-referrers get throttled automatically."
+icon: "user-shield"
+---
+
+Dequan's referral program ([→ how it works](/referrals/overview)) pays referrers a percentage of their referrals' trading fees. That kind of program is wonderful when used in good faith and toxic when farmed.
+
+So we built a defence.
+
+## The abuse patterns we watch for
+
+<CardGroup cols={2}>
+  <Card title="Self-referral" icon="user-slash">
+    Same wallet (or wallets clearly controlled by the same person) referring themselves. The system detects this through transfer-graph analysis and timing patterns.
+  </Card>
+  <Card title="Sybil farming" icon="users-slash">
+    A single operator running dozens of wallets to generate fake referrals. Detected via funding patterns, behavioural signatures, IP/session correlation, and trading pattern fingerprints.
+  </Card>
+  <Card title="Wash farming" icon="rotate">
+    Two wallets trading back and forth to generate fee volume on which both earn referral rewards. Detected via trade-graph analysis.
+  </Card>
+  <Card title="Subscription abuse" icon="ticket">
+    Patterns indicating coordinated subscription gaming to harvest referral payouts beyond legitimate use.
+  </Card>
+</CardGroup>
+
+## How the response system works
+
+When the system observes patterns it considers suspicious, it does **not** ban accounts outright. Instead it applies one of four throttle tiers:
+
+<Card title="Normal" icon="circle-check">
+  The default state. Full referral payouts.
+</Card>
+
+<Card title="Soft throttle" icon="hourglass-half">
+  Mild signal of unusual activity. Payouts continue but with longer settlement windows. Most flagged users return to Normal automatically once activity normalises.
+</Card>
+
+<Card title="Heavy throttle" icon="triangle-exclamation">
+  Strong signal of coordinated abuse. Payouts are paused pending review. Legitimate use cases that landed here in error can be resolved through support.
+</Card>
+
+<Card title="Freeze" icon="ban">
+  Active and clear abuse. Payouts halted, referral relationships under audit. Wallets confirmed as bad-faith are removed from the program.
+</Card>
+
+The tier moves up *and down* based on continuing behaviour. A user soft-throttled by a noisy week of activity who then settles into normal patterns will return to Normal automatically.
+
+## The principle: pay real, throttle gamed
+
+A referral program that pays uniformly to everyone makes farming inevitable, because farming is more profitable than legitimate referring at scale. A referral program that catches farming and reduces its yield makes legitimate referring **the better business** — which is exactly what we want.
+
+The throttle tiers are deliberate. We don't want to ban people; we want farming to be unprofitable enough that nobody bothers. Soft throttle is usually enough — gamers move on; legitimate referrers see no impact.
+
+## What legitimate referrers can do to stay clean
+
+This is almost always automatic. The system is *very* lenient with patterns that look real:
+
+- **Refer real people you actually know.** Friends, traders in your community, your audience.
+- **Don't auto-fund referrals from a single wallet you control.** This is the classic sybil signature.
+- **Don't promise unrealistic referral earnings.** Communities that overstate to drive sign-ups produce flagged sign-up patterns.
+- **Let your referrals trade naturally.** Coordinated wash trading between you and your referrals is detected.
+
+99% of our active referrers never trigger any throttle, ever. The 1% who do are usually doing something they know is gaming.
+
+## What we will never do
+
+- **Throttle silently without ever telling you.** If you're throttled, your account view says so and you can see why at the abstract level (e.g., "unusual referral funding patterns detected").
+- **Ban without recourse.** Mistaken flags can be raised through support and corrected.
+- **Use this system to throttle competitors.** The system only governs referral payouts. It does not affect trading, fees, latency, or any other aspect of platform access.
+- **Reveal the exact detection logic.** That would let bad actors evade it. The patterns we watch for are described above; the precise weights and thresholds are not published.
+
+## Why this exists at all
+
+Without a defence like this, the referral program would have to be either much smaller (defensive against farming by stinginess) or non-existent. Instead, by automating the defence, we can pay legitimate referrers **meaningful, sustainable percentages** that compound for them as their referrals trade.
+
+The economics are: real referrers get real money. Farmers get throttled. Everyone with good intentions wins.
+
+<Card title="Continue → How payouts work" icon="hand-holding-dollar" href="/referrals/how-payouts-work" horizontal>
+  Mechanics of the referral payout system.
+</Card>

@@ -1,0 +1,91 @@
+---
+title: "Milestones, Captures & Grades"
+description: "Every trade ends with a one-screen review. The point is not the score — it is the loop."
+icon: "medal"
+---
+
+Most retail traders fail at the same thing: **they never honestly review their own behaviour.** They remember winners. They forget losers. They convince themselves the last trade was a "lesson" without writing down what the lesson actually was.
+
+Dequan closes this loop automatically.
+
+## Milestones during the trade
+
+While you hold a position, the [Racing Lanes HUD](/pump-zone/racing-lanes) plants a flag at every meaningful gain threshold:
+
+- **+10%** — first capture, "this is a real trade"
+- **+25%** — momentum is confirmed
+- **+50%** — material gain, exit zone for many strategies
+- **+100%** — doubled
+- **+200%+** — moonshot territory; usually one big flag, never spammed
+
+The flags are **adaptive** by default — they scale with the token's behaviour and your entry, so you don't get cluttered tiny flags on a calm token or no flags on a parabolic one. You can switch to fixed thresholds if you prefer a strict ladder.
+
+Crossing a flag is a real event. The lane flashes, a small toast slides in, and the milestone stays planted as a visual record that this trade made it at least that far. The captures are throttled with hysteresis so volatility doesn't generate spam.
+
+## Outcome cards: every closed trade gets reviewed
+
+When a trade closes — whether you took profit, scaled out fully, or the position was liquidated — Dequan immediately surfaces a single-screen **Outcome Card**.
+
+The card includes:
+
+<CardGroup cols={2}>
+  <Card title="Result" icon="circle-check">
+    Sold cleanly, partially exited, scratched, rugged. Plain English, no jargon.
+  </Card>
+  <Card title="Hold time" icon="clock">
+    From buy confirmation to last sell.
+  </Card>
+  <Card title="Realised gain" icon="coins">
+    In SOL and USD, including fees.
+  </Card>
+  <Card title="Peak captured" icon="mountain">
+    The highest milestone reached during the hold. Critical for self-review.
+  </Card>
+  <Card title="Process grade" icon="graduation-cap">
+    A letter grade — A through F — based on how you traded the position, not just whether it printed.
+  </Card>
+  <Card title="One coaching note" icon="lightbulb">
+    A single, specific suggestion. Not generic advice — context-aware to *this* trade.
+  </Card>
+</CardGroup>
+
+## The grade is about process, not luck
+
+This is the most important design choice in the whole feedback layer.
+
+A trader who buys randomly and gets lucky for one trade has not improved. A trader who does everything right and gets unlucky has not regressed. **Grades reflect process — sizing, exit discipline, peak-capture ratio — not outcome alone.**
+
+A few examples of what that means in practice:
+
+- You bought a clean Pumping-band token, scaled out at +50% and +100%, exited at +180% before the dump → **A**. Disciplined entry, disciplined exits, peak captured.
+- You bought a Cool-TQS token, held through a -40% drawdown, exited at +5% break-even → **C**. The market was kind; the process was not.
+- You bought reasonably, the token rugged before you could exit → **B**. You can't grade for outcomes you couldn't control. The setup was sound.
+- You bought without checking risk, sized too large, panic-sold the first dip for a -25% loss → **F**. Even if the token later mooned, the *process* was poor and the grade reflects that.
+
+You will not always agree with the grade. That is the point. The grade exists to make you *consider* the trade, not to validate it.
+
+## The coaching note is specific
+
+The note that accompanies a grade is generated from the actual trade data — your peak capture vs. exit, your hold time vs. token half-life, your sizing relative to your portfolio, your behaviour during drawdowns.
+
+A few examples:
+
+- *"You scaled out at +50% but held the rest through a 30% drawdown. Consider trailing the remainder at +25% next time."*
+- *"You exited at +180% — the peak was +220%. Tight execution. Next time you might let one runner ride the moonshot flag."*
+- *"You sized 4× your usual entry on this one. The trade worked, but oversize sizing is a reliability problem long-term."*
+
+The notes are not generic copy. They are written for the trade.
+
+## Aggregated patterns
+
+Outcome cards accumulate into your personal trading record. Over a session or a week, you start to see patterns — the things you do well, the things you keep doing wrong, the formations that work for *your* style.
+
+This is the loop most traders never close, because they don't have honest data. Dequan generates that data passively as a side effect of trading on the platform.
+
+## Why this is in the free tier
+
+We considered making the outcome card a paid feature. We didn't, because the people most likely to need honest feedback are the people most likely to be using the free tier. Every Scout user gets the full review system on every trade.
+
+<Card title="The trading discipline layer is free" icon="gift" href="/tiers/scout" horizontal>
+  See exactly what's included in Scout.
+</Card>

@@ -1,0 +1,93 @@
+---
+title: "Latency Transparency"
+description: "Every trade's per-stage timing is recorded and visible to you. We don't ask you to trust the speed."
+icon: "stopwatch"
+---
+
+Anyone can claim "fastest." Few platforms let you check.
+
+Dequan records the timing of every stage of every trade you make — quote, build, sign, broadcast, confirmation — and exposes it to you in a panel you can audit at any time.
+
+## What's recorded per trade
+
+<Card title="Decision time" icon="brain">
+  When you opened the chart vs. when you pressed the buy button. Useful for studying your own discipline (and where pre-execution warmup actually helps).
+</Card>
+
+<Card title="Quote staleness" icon="magnifying-glass-dollar">
+  How fresh the quote was at the moment of submission. Pre-execution warmup keeps this low; you can verify.
+</Card>
+
+<Card title="Build time" icon="hammer">
+  How long the transaction-build step took. With pre-warming, this should be essentially zero.
+</Card>
+
+<Card title="Signing latency" icon="signature">
+  The signing step. On Lightning Wallet or Fast Mode, this is server-side and very fast. On main-wallet signing, this includes the user's confirmation time (which is mostly *you*, not us).
+</Card>
+
+<Card title="Broadcast-to-confirmation" icon="rocket">
+  The most important number. From the moment the signed transaction was broadcast across the parallel-landing race to the moment a confirmation came back.
+</Card>
+
+<Card title="Winning landing path" icon="flag-checkered">
+  Which submission path landed your transaction. Watching this distribution over many trades is a window into Dequan's parallel-landing infrastructure earning its keep.
+</Card>
+
+## Where you see it
+
+The Latency Transparency panel is accessible from your trade history. Open any past trade and you'll see the full timing breakdown.
+
+Aggregate views show your distribution over recent trades — median, p95, p99 — alongside platform aggregates so you can see how your experience compares.
+
+## What this means
+
+The honest claim Dequan can make: under normal network conditions, the broadcast-to-confirmation step on a Dequan trade is **well under one second** for most retail trades — often considerably less. Under congestion, the parallel-landing race shifts the distribution but still beats single-path submission by a meaningful margin.
+
+You don't have to take our word for any of this. The numbers are recorded. You can see them.
+
+## Why we publish them
+
+Three reasons:
+
+<Card title="Accountability" icon="check-double">
+  If we ever start sliding on speed, you'll see it in your own data before we'd ever admit it in marketing copy. That accountability keeps us sharp.
+</Card>
+
+<Card title="Education" icon="graduation-cap">
+  Most traders have no idea where the time in their trades actually goes. Watching your own timing data is the fastest way to internalise where speed *actually* matters in this business.
+</Card>
+
+<Card title="Verifiability" icon="link">
+  "Fastest" is a meaningless claim without numbers. We give you the numbers. If our competition doesn't, you can draw your own conclusion.
+</Card>
+
+## What the data also reveals
+
+Sometimes — honestly — it reveals that a particular trade was slow. Maybe a network hiccup, maybe a slow signing prompt on a hardware wallet, maybe a temporary upstream issue. We don't hide this. The data shows what it shows.
+
+What we *do*:
+
+- Investigate slow outliers ourselves, automatically.
+- Surface known incidents on the [health indicators](/reliability/health-indicators).
+- Publish post-mortems for systemic issues on the [changelog](/resources/changelog).
+
+What we *don't*:
+
+- Censor or massage individual trade timings.
+- Cherry-pick "best of" timings into marketing.
+- Withhold the data when it's flattering and surface it only when it isn't.
+
+The data is there. Use it.
+
+## How to use it well
+
+If you want to evaluate Dequan against another tool:
+
+1. Make 50–100 trades on Dequan, capturing the timing data.
+2. Make 50–100 comparable trades on the other tool.
+3. Compare the **distributions**, not individual trades. Median, p95, p99.
+4. Compare **failure rates** — what fraction reverted, what fraction took absurdly long.
+5. Compare **fees actually paid**, not advertised rates.
+
+The verdict will be evidence-based. We're confident in what the evidence will show, which is why we expose it without hesitation.

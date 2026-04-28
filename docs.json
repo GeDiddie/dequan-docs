@@ -1,0 +1,159 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "maple",
+  "name": "Dequan",
+  "description": "The fastest, most intuitive way to discover and snipe Solana tokens. Built by traders, engineered like aerospace.",
+  "colors": {
+    "primary": "#22D3EE",
+    "light": "#67E8F9",
+    "dark": "#0E7490"
+  },
+  "favicon": "/favicon.svg",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Welcome",
+            "pages": [
+              "index",
+              "quickstart",
+              "what-makes-dequan-different"
+            ]
+          },
+          {
+            "group": "The Pump Zone",
+            "pages": [
+              "pump-zone/overview",
+              "pump-zone/spatial-feed",
+              "pump-zone/velocity-and-momentum",
+              "pump-zone/racing-lanes",
+              "pump-zone/milestones-and-grades",
+              "pump-zone/sniper-list-vs-pump-zone"
+            ]
+          },
+          {
+            "group": "Charts & Signals",
+            "pages": [
+              "charts/overview",
+              "charts/cinematic-candles",
+              "charts/token-quality-score",
+              "charts/token-detail-tabs"
+            ]
+          },
+          {
+            "group": "Execution",
+            "pages": [
+              "execution/philosophy",
+              "execution/pre-execution-warmup",
+              "execution/adaptive-fees-and-slippage",
+              "execution/parallel-landing",
+              "execution/lightning-wallet",
+              "execution/fast-mode"
+            ]
+          },
+          {
+            "group": "Safety & Trust",
+            "pages": [
+              "safety/overview",
+              "safety/non-custodial-first",
+              "safety/honeypot-guard",
+              "safety/liquidity-drain-detection",
+              "safety/holders-and-dev-surveillance",
+              "safety/fee-transparency",
+              "safety/key-handling",
+              "safety/referral-anti-abuse"
+            ]
+          },
+          {
+            "group": "Toolbox",
+            "pages": [
+              "toolbox/overview",
+              "toolbox/burn-barrel"
+            ]
+          },
+          {
+            "group": "Tiers & Access",
+            "pages": [
+              "tiers/overview",
+              "tiers/scout",
+              "tiers/sniper-and-apex"
+            ]
+          },
+          {
+            "group": "Referral Program",
+            "pages": [
+              "referrals/overview",
+              "referrals/how-payouts-work"
+            ]
+          },
+          {
+            "group": "Reliability",
+            "pages": [
+              "reliability/health-indicators",
+              "reliability/latency-transparency"
+            ]
+          },
+          {
+            "group": "Resources",
+            "pages": [
+              "resources/faq",
+              "resources/glossary",
+              "resources/changelog"
+            ]
+          }
+        ]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Launch App",
+          "href": "https://snipe.dequan.xyz",
+          "icon": "rocket"
+        },
+        {
+          "anchor": "Status",
+          "href": "https://snipe.dequan.xyz",
+          "icon": "signal"
+        },
+        {
+          "anchor": "X",
+          "href": "https://x.com/dequanxyz",
+          "icon": "x-twitter"
+        }
+      ]
+    }
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://dequan.xyz"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "https://x.com/dequanxyz"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Launch App",
+      "href": "https://snipe.dequan.xyz"
+    }
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/dequanxyz",
+      "github": "https://github.com/dequanxyz"
+    }
+  },
+  "seo": {
+    "indexing": "all"
+  },
+  "search": {
+    "prompt": "Find anything in Dequan…"
+  }
+}

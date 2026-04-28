@@ -1,0 +1,81 @@
+---
+title: "How Payouts Work"
+description: "Mechanics of how referral earnings accrue, settle, and reach your wallet."
+icon: "hand-holding-dollar"
+---
+
+The Dequan referral system is designed to be transparent at every step — you should always be able to see what you're earning, why, and when it will arrive.
+
+## The flow
+
+<Steps>
+  <Step title="A referee makes a trade" icon="bolt">
+    Their trade is executed normally. The platform fee is calculated as usual. A pre-defined slice of that fee is allocated to the referrer (you).
+  </Step>
+  <Step title="The slice accrues to your referral balance" icon="piggy-bank">
+    Your account view shows your current accrued (pending) balance updating in real time as your referees trade.
+  </Step>
+  <Step title="A settlement window begins" icon="hourglass-half">
+    Pending balances settle on a regular cadence. The settlement window exists to allow for chargebacks, anti-abuse review, and batched on-chain payout efficiency.
+  </Step>
+  <Step title="Anti-abuse review (automatic)" icon="shield-halved">
+    The system reviews recent activity for the patterns described in [Referral Anti-Abuse](/safety/referral-anti-abuse). Most referrers pass through this transparently with zero impact; flagged accounts may have payouts delayed pending review.
+  </Step>
+  <Step title="Payout is issued" icon="paper-plane">
+    On settlement, the accrued balance is sent on-chain to the wallet address associated with your account. The transaction signature is recorded in your earnings history.
+  </Step>
+</Steps>
+
+## What you can see at any time
+
+<CardGroup cols={2}>
+  <Card title="Live accrued balance" icon="chart-line-up">
+    Updates in near-real-time as your referees trade. You can watch it climb during their active sessions.
+  </Card>
+  <Card title="Per-referee breakdown" icon="users">
+    See which referees are generating which earnings. Shows wallet (anonymised), join date, total fees you've earned from them, and recent activity.
+  </Card>
+  <Card title="Settlement schedule" icon="calendar">
+    Next settlement window, the amount that will settle in it, and the destination wallet for the payout.
+  </Card>
+  <Card title="Historical payouts" icon="receipt">
+    Every payout you've ever received, with on-chain transaction signatures you can verify in any explorer.
+  </Card>
+  <Card title="Throttle status" icon="shield-halved">
+    Your current throttle tier from the [anti-abuse system](/safety/referral-anti-abuse). Almost everyone is "Normal" — if you're not, the panel explains why at an actionable level.
+  </Card>
+</CardGroup>
+
+## What can affect a payout
+
+The honest set:
+
+- **Anti-abuse throttle.** If your account is flagged for suspicious patterns, payouts may be delayed (Soft), paused (Heavy), or halted (Freeze). See [Referral Anti-Abuse](/safety/referral-anti-abuse).
+- **Referee chargebacks.** If a referee's trade is reversed for any reason (extremely rare), the corresponding referral slice is also reversed before settlement.
+- **Network conditions.** On-chain payouts pay normal Solana priority fees. During severe congestion the payout transaction might take an extra block to confirm; the amount is unaffected.
+- **Wallet changes.** If you change your account's payout wallet, the next settlement uses the new address. Past settlements are not retroactive.
+
+## What can't affect a payout
+
+- **Dequan operational decisions.** We do not adjust referral payout rates retroactively. The rate that applied when a referee traded is the rate they were referred under.
+- **Tier changes on either side.** A referrer moving Scout → Sniper does not affect their referees' fee rate. A referee being upgraded to Sniper or Apex does not break the referral relationship.
+- **Inactivity.** Pending balances do not expire. They will settle whenever the next regular cadence runs after they accrued.
+
+## The "no surprises" principle
+
+The single most damaging thing a referral program can do is unexpectedly cut payouts that referrers have already earned. Dequan does not do this.
+
+If there are anti-abuse concerns, the throttle status is visible to the affected user with reasoning. If there are policy changes, they apply prospectively, not retroactively. If a referee's account is closed, the relationship ends but accrued earnings still settle.
+
+The referral program is meant to be a quiet, dependable revenue stream for legitimate referrers — not a lottery, not a moving target. We design it that way deliberately.
+
+## Verifying your earnings
+
+Every payout you've received has an on-chain transaction signature. You can:
+
+1. Open the payout history in your account view.
+2. Click the signature for any payout.
+3. Open the resulting Solana explorer link.
+4. Verify that the amount, source, destination, and timestamp all match what Dequan claims.
+
+This is the kind of verification we *want* you to do. Not because we expect mistrust, but because verifiability is the foundation of trust.
