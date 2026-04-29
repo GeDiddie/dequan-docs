@@ -1,0 +1,72 @@
+---
+title: "Token Quality Score"
+icon: "shield-halved"
+---
+
+Every Dequan-rendered token carries a **Token Quality Score (TQS)** — a number from 0 to 100 that summarises the underlying risk and quality picture into one signal.
+
+Hover over any token in the Pump Zone and a card pops out to the side showing the TQS alongside other quick data bits. You see the score before you ever open a chart.
+
+## The scale
+
+<CardGroup cols={3}>
+  <Card title="HOT" icon="fire">
+    **Score ≥ 70**
+
+    Clean profile, real activity, low concentration. Worth closer attention.
+  </Card>
+  <Card title="WARM" icon="temperature-three-quarters">
+    **40 – 69**
+
+    Mixed signals. Open the chart and check the components before deciding.
+  </Card>
+  <Card title="COOL" icon="snowflake">
+    **Score `< 40`**
+
+    Concentration is high, dev wallet is questionable, or the action looks manufactured. Most traders should pass.
+  </Card>
+</CardGroup>
+
+## Where it shows up
+
+- **The token glyph** in the Pump Zone carries the TQS badge
+- **The chart palette** is keyed off TQS — HOT renders in gold candles, WARM in cinematic teal/red, COOL in ice-blue
+- **The Sniper List** shows TQS as a sortable column
+- **The candle drawer** highlights TQS changes as they happen
+
+## Why a single number?
+
+Most safety tooling buries you in a dozen separate metrics — top-10 holders %, dev hold %, snapshot snipers, bundlers, mint authority status. All of them are useful, none of them are decisions.
+
+A score is a decision. **TQS is the decision-grade summary** of that whole signal cluster, calibrated against historical outcomes.
+
+You can still inspect every component — see the [Token Detail Tabs](/charts/token-detail-tabs) — when you want the full breakdown. TQS is the headline; the tabs are the article.
+
+## What goes into it
+
+We deliberately don't publish the exact weighting. The score is one of Dequan's research outputs and the calibration evolves as the meta evolves — what predicted "HOT" six months ago doesn't predict it now.
+
+What we *do* commit to:
+
+- TQS is **never paid promotion**. There is no way to buy a higher score.
+- TQS is **never adjusted on request**. Not for projects, not for influencers, not for anyone.
+- TQS is **not biased by venue** — the score doesn't reward tokens for using a particular DEX or launchpad.
+- TQS is **based purely on observable on-chain and market data**. No off-chain reputation inputs, no Twitter sentiment, no manual flagging.
+
+## Live updates
+
+TQS is a streaming score, not a snapshot. As conditions change — concentration shifts, dev moves, bonding curve advances, trade activity profile evolves — the score updates and the chart palette shifts with it.
+
+Watching a chart go from teal to gold while you're on it is a real signal. Something about the token's profile just improved.
+
+## TQS is not a buy signal
+
+We have to say this explicitly because someone will misread the docs otherwise.
+
+TQS is a **risk assessment**. A HOT token can still rug. A COOL token can still print. The score tells you what the conditions look like; it does not tell you whether to trade.
+
+Used correctly, TQS narrows the field of consideration. It does not replace the trade decision.
+
+<Card title="See the components yourself" icon="layer-group" href="/charts/token-detail-tabs" horizontal>
+  Token Detail Tabs surface every input that goes into a token's risk picture.
+</Card>
