@@ -33,7 +33,7 @@ Referral earnings settle on-demand, not on a fixed schedule:
     On withdrawal, the system reviews recent activity for the patterns described in [Referral Anti-Abuse](/safety/referral-anti-abuse). Most referrers pass through transparently with zero impact; flagged accounts may have a withdrawal delayed pending review.
   </Step>
   <Step title="Payout is sent on-chain" icon="paper-plane">
-    The withdrawal is broadcast to Solana and lands in your connected wallet within seconds. The transaction signature is recorded in your earnings history.
+    The withdrawal is picked up by the automated processor (which runs every few minutes) and broadcast to Solana. The SOL lands in your connected wallet typically within a few minutes. The transaction signature is recorded in your earnings history.
   </Step>
 </Steps>
 
@@ -74,7 +74,7 @@ The honest set:
 
 - **Dequan operational decisions.** We do not adjust referral payout rates retroactively. The rate that applied when a referee traded is the rate they were referred under.
 - **Tier changes on either side.** A referrer moving Scout → Sniper does not affect their referees' fee rate. A referee being upgraded to Sniper or Apex does not break the referral relationship.
-- **Inactivity.** Pending balances do not expire. They will settle whenever the next regular cadence runs after they accrued.
+- **Inactivity.** Pending balances do not expire. Your accrued balance stays available to withdraw whenever you choose.
 
 ## The "no surprises" principle
 
