@@ -16,7 +16,9 @@ Most trading tools handle this with a **static default** — say, 500 µ◎ per 
 
 Dequan instead derives the priority fee from a **live network percentile feed**. The required fee at this moment, on this network, for the priority tier you've selected, is computed continuously. When you submit, the fee on your transaction is calibrated to *current conditions*, not yesterday's.
 
-Three priority tiers are available — **P1**, **P2**, **P3** — each anchored to a different percentile. Higher tiers get into earlier blocks at higher fee cost. Sniper and Apex traders typically run P3; Scout traders typically run P1 or P2 depending on bet size.
+Many platforms expose static tiers — often labelled P1, P2, P3 — where you pick a percentile and hope it matches current network demand. Dequan defaults to **Auto**, which monitors the average fees being paid in real time and automatically selects the fee necessary for optimal block placement. You never over-tip on a quiet network or under-tip during a pump.
+
+If you prefer full control, you can still set a custom fee amount. But for most traders, Auto is simply the right answer most of the time.
 
 The fee level is shown in the buy panel before you click and recorded in the trade history afterward, so you always know exactly what you paid for landing.
 
@@ -39,13 +41,13 @@ You see the recommended slippage in the buy panel. You can override it (the syst
 |---|---|---|
 | Deep pool, calm market, $50 trade | Wastes priority fee, accepts 5% slippage on a 0.1% impact pool | Cheap priority fee, recommends ~0.5% slippage |
 | Fresh launch, $50 trade | Static 5% slippage often too tight; reverts on micro-moves | Recommends 8–12% slippage, lands cleanly |
-| Mid-cap during a pump | 500 µ◎ default, never lands | Live network percentile, lands first try |
+| Mid-cap during a pump | 500 µ◎ default, never lands | Auto fee matches live network demand, lands first try |
 | Migration token shifting pools | Stale route, reverts | Pre-execution warmup catches the shift |
 
-You're not configuring any of this. You're choosing a tier (P1/P2/P3) and a slippage mode (auto-recommended or manual override), and Dequan handles the rest.
+You're not configuring any of this manually. Dequan's Auto fee handles priority, and the recommended slippage handles the rest. Both can be overridden if you have a reason — but the defaults are right for almost every trade.
 
 ## You can audit it
 
-Every trade you execute records what fee level was used, what slippage was accepted, and what the actual fill ended up being. The [Latency Transparency](/reliability/latency-transparency) panel includes this data so you can see the relationship between your settings, network conditions, and outcomes over time.
+Every trade you execute records what fee was used, what slippage was accepted, and what the actual fill ended up being. The [Timings](/reliability/latency-transparency) panel includes this data so you can see the relationship between your settings, network conditions, and outcomes over time.
 
 The point is to make this a **system you trust**, not a black box. The defaults are right for almost every trader almost all the time. The data is there for the few who want to verify.
