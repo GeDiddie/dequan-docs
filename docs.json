@@ -35,7 +35,6 @@
             "group": "Charts & Signals",
             "pages": [
               "charts/overview",
-              "charts/cinematic-candles",
               "charts/token-quality-score",
               "charts/token-detail-tabs"
             ]
