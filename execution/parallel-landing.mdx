@@ -9,7 +9,13 @@ Most tools accept this by submitting once and praying. Dequan does not.
 
 ## The race
 
-The moment your transaction is signed, Dequan broadcasts it across **multiple landing paths in parallel** — different network routes that each have a chance of getting your trade into the very next block. The first path to confirm wins; the others are silently dropped.
+The moment your transaction is signed, Dequan fires it across **three completely separate submission methods simultaneously**:
+
+1. **Direct-to-validator** — Dequan tracks pump.fun's on-chain program in real time, ingesting instruction changes as they are published, so the transaction is built against the freshest possible state and submitted directly into the validator pipeline.
+2. **Raptor (via Geyser gRPC)** — SolanaTracker's Raptor service, which uses Solana's Geyser gRPC stream for low-latency block propagation.
+3. **Jito** — Jito's block-engine submission path, which bundles transactions for priority inclusion by Jito-connected validators.
+
+These are not three routes to the same destination. They are three distinct submission mechanisms with different propagation paths, different congestion profiles, and different validator coverage. The first to achieve block inclusion wins. The other two are rejected by the network's own deduplication — the same signed transaction cannot be included more than once.
 
 You don't choose a path. You don't toggle it on. The race happens automatically on every Dequan trade.
 
@@ -17,7 +23,7 @@ The result, in normal conditions: confirmations land in well under one second. D
 
 ## Why this works
 
-The submission paths Dequan uses are deliberately **diverse** — they have different latencies, different congestion characteristics, different inclusion mechanisms. When one path is slow because of backpressure on its specific upstream, the others aren't. When the network is calm, any of them works fine. When the network is hostile, the geometric-mean speed across the set is dramatically better than any single path's worst case.
+The three submission methods are deliberately **diverse** — direct-to-validator, Raptor/Geyser, and Jito each have different latencies, different congestion characteristics, and different validator relationships. When one path is under backpressure, the others are not. When the network is calm, any of them works fine. When the network is hostile, the race across all three is dramatically more reliable than any single path's worst case.
 
 In practice this means the **tail latency** — the slow trades, the ones that ruin your day — is much lower on Dequan than on a tool with a single submission lane.
 
@@ -50,9 +56,9 @@ This is the kind of internal observability most tools never expose. Dequan expos
 
 ## What this isn't
 
-It is not access to a "secret" RPC. It is not a single magic provider. It is **engineering discipline applied to the submission step** — the same way real high-frequency systems handle network reliability — adapted for the realities of trading on Solana.
+It is not a single magic RPC provider. It is three named, production-grade submission methods — direct-to-validator, Raptor, and Jito — running in parallel on every trade. **Engineering discipline applied to the submission step**, adapted for the realities of trading on Solana.
 
-The honest summary: traditional submit-and-pray fails ~5–15% of the time during meme volatility, depending on how unlucky you are with leader schedule. Dequan's parallel race fails materially less. That difference compounds over hundreds of trades into a real edge.
+Traditional submit-and-pray fails materially more often during meme volatility. Dequan's three-way race fails materially less. That difference compounds over hundreds of trades into a real edge.
 
 <Card title="Continue → Lightning Wallet" icon="bolt" href="/execution/lightning-wallet" horizontal>
   Optional one-tap trading with no wallet popups.
