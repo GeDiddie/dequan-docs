@@ -46,8 +46,7 @@
               "execution/pre-execution-warmup",
               "execution/adaptive-fees-and-slippage",
               "execution/parallel-landing",
-              "execution/lightning-wallet",
-              "execution/fast-mode"
+              "execution/lightning-wallet"
             ]
           },
           {

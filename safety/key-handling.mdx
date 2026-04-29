@@ -45,12 +45,6 @@ This is the same auth pattern used by major financial APIs. It is conventional, 
 
 The funds in Lightning Wallet are sandboxed: capped balance, withdrawable any time, never silently transferred elsewhere. The key handling for Lightning is more rigorous than industry-standard "encrypt at rest" — see [Lightning Wallet](/execution/lightning-wallet) for details.
 
-## Fast Mode keys
-
-[Fast Mode](/execution/fast-mode) uses a **session key** generated specifically for the trading session, with on-chain delegation that strictly bounds what it can sign. The session key itself is treated with the same hardware-backed handling as Lightning Wallet keys, but its scope is limited by on-chain rules, not just by server-side policy.
-
-Revoking a Fast Mode session is **immediate** — the on-chain delegation is canceled, after which the session key is cryptographically incapable of signing anything that would affect your wallet.
-
 ## What we log, what we don't
 
 Logged for operational and audit purposes:
