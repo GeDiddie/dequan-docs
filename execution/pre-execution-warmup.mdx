@@ -54,12 +54,6 @@ The cache is also **shared across the user base**. If a thousand traders open th
 
 If, between you opening the chart and clicking buy, the underlying conditions move — the pool shifts, the route becomes invalid, the price impact changes — the system detects the staleness and re-warms before signing. **You always trade against current conditions; you just don't pay the warmup latency at click time.**
 
-## The Quick Buy path
-
-For tokens you're trading aggressively from the Pump Zone with **Quick Buy ON**, the warmup is even more aggressive — the system pre-stages a fully built transaction template against your default bet size, so the click-to-signature time approaches the network's own minimum.
-
-You can preview Quick Buy behaviour on any token by opening its drawer and watching the buy panel: the price quote and the recommended slippage are populated within a few hundred milliseconds and stay current. By the time you decide, the trade is essentially loaded.
-
 ## You can verify all of this
 
 Every trade you execute logs its per-stage timing — quote, build, sign, land — into the [Latency Transparency](/reliability/latency-transparency) panel. After your first few buys, look at the panel: the build step on a pre-warmed trade is dramatically smaller than the click-to-confirmation total. That's the warmup, working.
