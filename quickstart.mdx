@@ -44,23 +44,21 @@ You can switch into **Sniper List** mode for a traditional analyst view at any t
 
 ## 4. Tap a token
 
-A drawer opens with a live chart, holders breakdown, dev history, recent trades, and a buy panel with **Quick Snipe** preset to your default size.
+Hovering over a token locks the token in place and shows a quick stats card. Tapping a token opens the candle drawer with a live candle chart, holders breakdown, dev history, recent trades, and a buy panel with **Quick Buy** preset to your default size.
 
-The instant the drawer opens, Dequan begins preparing the trade in the background — fetching a quote, warming the route, lining up everything execution needs. By the time you choose to buy, almost nothing is left to do.
+The instant the drawer opens, Dequan immediately runs honeypot checks by reading the token contract and begins preparing the trade in the background — fetching a quote, warming the route, lining up everything execution needs. Other platforms run these ops at buy time. Dequan anticipates your next move and preprocesses as much as possible before you've ever decided to buy.
 
 ## 5. Buy
 
-Press **Snipe**. Approve the wallet prompt. Done.
+Press **Buy**. Done.
 
-Your transaction is dispatched across multiple landing paths simultaneously. Whichever lane lands first becomes your fill. You get a signature in seconds, often in well under one second.
-
-The token immediately appears as a lane in the **Racing Lanes HUD** — your live position glides forward as price moves, milestones flash as you cross them, and one-tap exits live right on the lane.
+Behind the scenes your transaction is dispatched across multiple landing paths simultaneously. Whichever lane lands first becomes your fill. The token immediately appears as a **'B'** on the candle chart.
 
 ## 6. Exit when you're ready
 
 - **One-tap presets** — sell 25%, 50%, 75%, or all of a position from the lane itself.
-- **Take Profit Now** — single button, plain English, no menus.
-- **Outcome card** — every closed trade ends with a one-screen summary so you can learn from your own pattern.
+- **Sell** — single button, plain English, no menus.
+- **Outcome card** — every closed trade ends with an onscreen summary of the trade.
 
 That is the whole loop. You are now trading on Dequan.
 
@@ -70,26 +68,13 @@ Behind that minute, Dequan's systems quietly:
 
 - Streamed live token metrics from a fan-out pipeline so your browser never opens upstream connections directly.
 - Pre-warmed your trade so the click-to-signature path was as short as the network would allow.
-- Race-broadcast your signed transaction across multiple landing paths to maximise the odds of landing in the next block.
+- Race-broadcast your signed transaction across multiple landing paths to maximize the odds of landing in the next block.
 - Validated the token was not a honeypot before you even saw the chart.
 - Watched the pool's liquidity in real time and would have warned you instantly if it drained.
 - Logged every checkpoint of the trade so you can see exactly where time was spent.
 
 You didn't see any of that. You shouldn't have to. **Dequan does the engineering so you can do the trading.**
 
-## Next steps
+## Does my browser add latency?
 
-<CardGroup cols={2}>
-  <Card title="The Pump Zone, explained" icon="radar" href="/pump-zone/overview">
-    The full mental model behind the spatial feed.
-  </Card>
-  <Card title="Lightning Wallet" icon="bolt" href="/execution/lightning-wallet">
-    Optional one-tap trading mode. No popups, no friction, your funds.
-  </Card>
-  <Card title="Safety overview" icon="shield-check" href="/safety/overview">
-    Every protective system Dequan runs on your behalf.
-  </Card>
-  <Card title="Why Scout (free) is the full product" icon="gift" href="/tiers/scout">
-    Read this if you think this is too good to be free.
-  </Card>
-</CardGroup>
+When buying tokens on the curve, speed is King. Ever wondered if using Brave is better than using Chrome or Edge, or simply how much time is added on to the trade from the browser? Dequan has a tool for that! [Try it out](https://snipe.dequan.xyz/latency-map) and see what kind of speed others have around the world.
