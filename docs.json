@@ -122,6 +122,11 @@
           "anchor": "X",
           "href": "https://x.com/dequanxyz",
           "icon": "x-twitter"
+        },
+        {
+          "anchor": "Discord",
+          "href": "https://discord.gg/uayRQVYyR2",
+          "icon": "discord"
         }
       ]
     }
