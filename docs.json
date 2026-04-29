@@ -28,6 +28,7 @@
               "pump-zone/overview",
               "pump-zone/spatial-feed",
               "pump-zone/velocity-and-momentum",
+              "pump-zone/token-quality-score",
               "pump-zone/sniper-list-vs-pump-zone"
             ]
           },
@@ -35,7 +36,6 @@
             "group": "Charts & Signals",
             "pages": [
               "charts/overview",
-              "charts/token-quality-score",
               "charts/token-detail-tabs"
             ]
           },
