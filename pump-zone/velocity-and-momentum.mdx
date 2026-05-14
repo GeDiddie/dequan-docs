@@ -88,6 +88,16 @@ You can hide every token that isn't in the velocity bands you care about. The mo
   </Tab>
 </Tabs>
 
+## The ML Momentum Engine
+
+Velocity and acceleration are the raw signals. Dequan takes it one step further: a self-training **LightGBM machine learning model** watches those signals continuously and produces a live **Pump Score** — the probability that a token is about to pump — updated every 500 ms across every token in the feed.
+
+This is unique to the Pump Zone. The model trains on the Pump Zone's own live data, learns from real outcomes, and gets sharper over time without manual intervention.
+
+<Card title="ML Momentum Engine →" icon="flask" href="/pump-zone/ml-momentum-engine" horizontal>
+  How the model works, what the scores mean, and how to use the ⚗️ ML / 📡 RAW toggle.
+</Card>
+
 ## Why this matters
 
 Most retail traders lose because they confuse a high market cap with trending. They buy after a token is already up 200% because the green number looks good, not realising the green number is decelerating and the move is over.

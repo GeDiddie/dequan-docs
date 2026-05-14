@@ -1,0 +1,140 @@
+---
+title: "ML Momentum Engine"
+icon: "flask"
+description: "Dequan's self-training machine learning model ranks every token in real time by pump probability — not price history."
+---
+
+## What it is
+
+Every other platform answers the same question: *what just happened?*
+
+Dequan's ML Momentum Engine answers a different one: **what is about to happen?**
+
+The engine watches the real-time derivative signals that only exist inside the Pump Zone — velocity, acceleration, and market cap trajectory — and produces a live probability score for every token it's tracking:
+
+<CardGroup cols={2}>
+  <Card title="Pump Score" icon="chart-line-up">
+    **P(+50% market cap in 5 minutes).**
+    The model's confidence that a token is in the early stages of a real run, not just noise.
+  </Card>
+  <Card title="Sniper Score" icon="crosshairs">
+    **P(+100% market cap in 60 seconds).**
+    The model's confidence that a token is in explosive breakout territory right now.
+  </Card>
+</CardGroup>
+
+Both scores are computed live, update every 500 ms, and are surfaced directly in the **Derivative Pulse** badge — the kinetic ranking strip that lives inside the Pump Zone.
+
+---
+
+## Why this is fundamentally different
+
+Most tools show you a sorted list based on past price change. The top item on any scanner's list is already up 300%. The crowd is already in. You're buying the exit, not the entry.
+
+The ML Momentum Engine works on **leading signals**, not lagging ones:
+
+| Signal type | What it measures | When it fires |
+|---|---|---|
+| Price % change (other tools) | What already happened | After the move |
+| Volume spike (other tools) | What already happened | After the move |
+| **Velocity (Dequan)** | How fast MC is growing *right now* | As it starts |
+| **Acceleration (Dequan)** | Whether momentum is building or fading | As it inflects |
+| **Pump Score (Dequan ML)** | Probability of a real move starting | Before the crowd |
+
+The model was trained on millions of labeled outcomes — real Solana tokens, real velocity and acceleration curves, real results. It learned which velocity + acceleration combinations preceded real pumps, and which ones burned out.
+
+---
+
+## Where the training data comes from
+
+This is what makes Dequan's model different from any off-the-shelf predictor: **it trains on its own live feed.**
+
+Every token the Pump Zone tracks generates a continuous stream of derivative signals — smoothed velocity, acceleration, market cap, token age, and normalized momentum ratios. These signals are logged continuously with timestamps.
+
+After each token's lifecycle completes, the system looks back and labels the record: *did this token pump +50% in the 5 minutes after this moment? Did it double in 60 seconds?*
+
+Those labels are the training signal. The model learns **from the actual tokens that move through the Pump Zone** — not from a generic crypto dataset, not from cherry-picked examples. It learns from the same data distribution you're trading.
+
+As more tokens flow through the system, the training corpus grows. The model is retrained periodically. **It gets sharper over time — automatically, without anyone adjusting it manually.**
+
+---
+
+## The 7 features the model uses
+
+The model does not use price. It uses derivative signals that measure how a token is *moving*, not where it is:
+
+| Feature | What it means |
+|---|---|
+| `velEma` | Smoothed market-cap growth rate ($/sec) |
+| `accel` | Rate of change of velocity — the inflection signal |
+| `mcUsd` | Current market cap in USD |
+| `velEma_norm` | Velocity relative to market cap size |
+| `accel_norm` | Acceleration relative to recent velocity magnitude |
+| `log_mc` | Log-scale market cap (compresses the long tail) |
+| `token_age_sec` | How old the token is — new tokens behave differently |
+
+None of these features are available in the form Dequan computes them on any other platform. They require a live per-token derivative pipeline that's running continuously on the Pump Zone's data.
+
+---
+
+## How to use it in the UI
+
+The ML Momentum Engine surfaces inside the **Derivative Pulse** badge — the real-time ranking strip in the Pump Zone header.
+
+<Steps>
+  <Step title="Open the Pump Zone">
+    The Derivative Pulse badge is in the toolbar above the field. It shows the top tokens by current momentum signal.
+  </Step>
+  <Step title="Look for the toggle">
+    On the right side of the badge, you'll see a small button: **⚗️ ML** or **📡 RAW**. Toggle between them.
+  </Step>
+  <Step title="ML mode">
+    Pills are ranked by Pump Score. The percentage shown on each pill is the model's current probability estimate. Green = ≥65% confidence. Amber = ≥45%. Dim = low signal.
+  </Step>
+  <Step title="RAW mode">
+    Falls back to pure velocity ranking — bar width represents relative speed, colors represent acceleration direction. Useful for comparison or when you want to see the raw derivative signal without model interpretation.
+  </Step>
+</Steps>
+
+<Tip>
+  ML mode is on by default. If you prefer raw velocity signals, toggle to RAW mode — the preference is saved to your browser and persists across sessions.
+</Tip>
+
+---
+
+## Confidence, not certainty
+
+A 72% Pump Score does not mean a token will definitely pump. It means the model — trained on thousands of real outcomes — has seen this velocity + acceleration pattern lead to a significant move roughly 72% of the time.
+
+Some things that a high Pump Score does **not** guarantee:
+- Dev won't rug after the move starts
+- Liquidity is sufficient for your size
+- The move hasn't already started (use the chart to check)
+
+**Always combine the ML signal with the [Token Quality Score](/pump-zone/token-quality-score)** (which checks for manipulation, concentration, and dev behaviour) and the safety signals in the candle drawer.
+
+The ML Momentum Engine is one input. The decision is yours.
+
+---
+
+## Model specs
+
+| Attribute | Value |
+|---|---|
+| Model type | LightGBM gradient boosted trees → ONNX |
+| Pump Score target | P(MC +50% within 5 min) |
+| Sniper Score target | P(MC +100% within 60 s) |
+| Training corpus | Live Pump Zone derivative logs (continuous) |
+| Inference cadence | Every 500 ms, batched across all tracked tokens |
+| Inference location | Data Gateway (server-side) — not your browser |
+| AUC at last training | 0.72 (Pump Score), 0.72 (Sniper Score) |
+
+<Note>
+The model runs entirely on Dequan's servers. Your browser never sees the raw model weights, and the scores arrive as part of the standard token metrics stream. There is no latency penalty for ML mode vs RAW mode.
+</Note>
+
+---
+
+<Card title="Back to Velocity & Momentum" icon="gauge-high" href="/pump-zone/velocity-and-momentum" horizontal>
+  Understand the underlying derivative signals the model is built on.
+</Card>

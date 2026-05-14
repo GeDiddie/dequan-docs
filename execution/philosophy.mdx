@@ -61,6 +61,8 @@ The total click-to-confirmation time is the sum of those five steps. Most tools 
 
 The user-visible effect of all this is simple: **your trade lands, on the first try, in well under one second** under normal network conditions. You don't see anything in the UI about "races" or "warmups." You just see that the buy works. Every time.
 
+The UI also updates **immediately on submission** — holdings appear, the candle chart receives a trade marker, and your position state reflects the trade the moment the transaction is dispatched. Confirmation from the network arrives shortly after. If a transaction reverts, the UI rolls back automatically.
+
 The speed gap is most visible when conditions get hard:
 
 - **During pump events**, when the network is congested and other tools' transactions revert, Dequan's adaptive priority fees keep your trade in the priority lane.

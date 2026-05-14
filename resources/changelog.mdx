@@ -15,6 +15,24 @@ Join the [#dev-announcements](https://discord.com/channels/1480608573989064704/1
 
 ## Recent
 
+<Update label="Email and Google Sign-In" description="New account entry points without a browser wallet extension">
+  Users can now sign in to Dequan using email OTP or Google — no browser wallet extension required to get started. A Solana wallet is still required for trading, but the sign-in flow now works from a phone browser, a desktop with no extension installed, or any Google-authenticated device.
+
+  After signing in with email or Google, connecting a Solana wallet links your on-chain identity to your account for non-custodial trades, portfolio history, tier access, and referral tracking.
+</Update>
+
+<Update label="Wallet Linking" description="Connect a Solana wallet to an email or Google account">
+  External Solana wallets (Phantom, Solflare, Backpack) can now be linked to an account created via email or Google. The linked wallet serves as your primary signing address for non-custodial trades and is associated with your account for portfolio history and tier access.
+</Update>
+
+<Update label="Optimistic Trade UI" description="Holdings and chart state update at submit time, not confirmation">
+  The trade interface now reflects your position the moment a transaction is submitted. Holdings appear, the candle chart receives a buy or sell marker, and portfolio state updates immediately at dispatch — before on-chain confirmation arrives. If the transaction reverts, all state rolls back cleanly and automatically.
+</Update>
+
+<Update label="Mobile Trading" description="Full trade loop on phone-sized screens">
+  Mobile-specific trade flows and layout improvements make the complete snipe-and-exit workflow available on phone browsers. Lightning Wallet is the recommended path for mobile — it eliminates the wallet-popup signing step that makes mobile trading slow on most devices.
+</Update>
+
 <Update label="Public Documentation Launch" description="The Mintlify docs are live">
   Comprehensive product documentation now available at this site. Covers the Pump Zone, charts, execution pipeline, safety stack, tiers, and referrals. The audience is users who want to understand what Dequan does and why it works the way it does — not an integration manual.
 
