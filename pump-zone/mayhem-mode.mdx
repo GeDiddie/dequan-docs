@@ -1,0 +1,31 @@
+---
+title: "Mayhem Mode Filter"
+icon: "robot"
+description: "pump.fun's AI bot tokens behave differently from normal launches. Dequan hides them by default."
+---
+
+## What is Mayhem Mode?
+
+Mayhem Mode is a mechanic launched by pump.fun in November 2025. When a token launches in Mayhem Mode, pump.fun runs its own AI trading bot on that token for the first 24 hours. The bot executes random buy and sell activity designed to produce chart action that looks organic.
+
+Two things follow from this:
+
+1. **Double token supply.** Mayhem Mode tokens launch with 2 billion tokens instead of the standard 1 billion. That alone changes the graduation threshold math — the price-per-token required to reach the bonding curve graduation cap is halved.
+
+2. **Corrupted momentum signals.** The velocity and momentum signals Dequan uses to rank tokens measure real buying pressure from real traders. The Mayhem bot injects random-walk volume into those signals. During the bot's active window, a Mayhem token can look like it has strong momentum when it doesn't — and look stagnant when real buying is actually happening underneath the noise.
+
+## What Dequan does
+
+Dequan detects Mayhem Mode tokens automatically at the feed level. By default, they are excluded from the Pump Zone.
+
+The filter is **on by default**. Most traders should leave it on.
+
+To see Mayhem tokens anyway, open the **Filter Drawer** and toggle off **"Hide Mayhem Tokens"** under Token Filters.
+
+## Why opt-out instead of opt-in?
+
+Mixing Mayhem tokens into the main feed would degrade the ranking for everything else. The signal profile is fundamentally different — not worse necessarily, just different enough that it doesn't belong in the same ranked list.
+
+Some traders specifically want to trade Mayhem tokens. The volatility from the bot's random-walk activity can create real entries if you read it correctly. If that's your approach, turning the filter off makes sense. But that's a deliberate choice, not the default.
+
+Dequan doesn't hide Mayhem Mode tokens because they're inherently bad trades. It hides them because their signals can't be interpreted the same way as normal tokens, and a feed that mixes both is harder to use than one that separates them.

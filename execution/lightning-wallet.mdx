@@ -9,9 +9,11 @@ Dequan's **Lightning Wallet** is the optional fix.
 
 ## What it is
 
-Lightning Wallet is a custodial Solana wallet that Dequan creates for you and holds securely on its servers. You fund it from your main wallet, and Dequan can sign small trades on your behalf without prompting your main wallet for a signature each time.
+Lightning Wallet is a custodial Solana wallet that Dequan creates for you and holds securely on its servers. Dequan signs trades on your behalf without requiring a wallet popup on every action.
 
-It is optional. It is sandboxed. It is withdrawable to your main wallet any time, no questions asked.
+It is optional for users with a connected Solana wallet. For users who sign in with Google or email and have no external wallet, **Lightning Wallet is your Solana wallet** — your address, your balance, your profits. All in one place.
+
+It is sandboxed. It is withdrawable any time, no questions asked.
 
 ## How signing security works
 
@@ -27,7 +29,7 @@ What that means concretely:
 This is meaningfully more rigorous than "we encrypt the keys at rest" — the hardware-backed boundary provides isolated key material, full audit logging, and replay-resistant access controls.
 
 <Note>
-**You are not transferring custody to Dequan.** You are funding a sandboxed account that you can drain back to your main wallet at any time, with one click, no confirmations required. The funds in Lightning Wallet are at every moment yours.
+**You are not transferring custody to Dequan.** You are funding a sandboxed account that you can drain to any Solana address at any time, with one click, no confirmations required. The funds in Lightning Wallet are at every moment yours.
 </Note>
 
 ## What it solves
@@ -51,15 +53,32 @@ This is meaningfully more rigorous than "we encrypt the keys at rest" — the ha
 
 You fund Lightning Wallet by sending SOL to its address. Three options:
 
-- **One-click deposit** from a connected main wallet — Dequan opens a transfer prompt with the destination prefilled.
+- **One-click deposit** from a connected external wallet — Dequan opens a transfer prompt with the destination prefilled.
 - **QR code** — scan with any mobile wallet (Phantom, Solflare, hardware) and send.
-- **Manual transfer** — copy the address and send from anywhere.
+- **Manual transfer** — copy the address and send from anywhere, including a Visa/Mastercard on-ramp.
 
 The balance updates within seconds of arrival.
 
 ## Withdrawing
 
-One click. Specify the amount and destination wallet. The withdrawal is signed by the same KMS pipeline, broadcasts immediately, and settles in seconds. **No withdrawal fees** beyond the on-chain priority fee. **No confirmation period.** **No approval flow.** The funds are yours.
+One click. Specify the amount and a destination Solana address. The withdrawal is signed by the same KMS pipeline, broadcasts immediately, and settles in seconds. **No withdrawal fees** beyond the on-chain priority fee. **No confirmation period.** **No approval flow.** The funds are yours.
+
+<Note>
+The destination can be **any valid Solana address** — a Phantom wallet, a Coinbase or exchange deposit address, or any other wallet you control. You do not need to have a wallet connected to Dequan to withdraw.
+</Note>
+
+## Signed in with Google or email? Your Lightning Wallet is your wallet.
+
+If you signed in with Google or email and never connected an external Solana wallet, your Lightning Wallet **is** your Solana identity on the platform. Your balance, your trade profits, and your SOL all live here.
+
+Your profits accumulate automatically as trades close — there is nothing to "claim". The balance you see in the Lightning Wallet panel is your total.
+
+To move funds out, you need a destination Solana address. If you don't have one yet:
+
+- **Install Phantom** (phantom.app, free, 30 seconds) and use your new wallet address as the withdrawal destination.
+- **Use an exchange deposit address** — Coinbase, Kraken, or any exchange that accepts SOL deposits.
+
+Once you have a destination address, open the Lightning Wallet panel → **Withdraw** → paste the address → confirm. Funds arrive in under 30 seconds.
 
 ## Auto-enable on first deposit
 

@@ -15,6 +15,20 @@ Join the [#dev-announcements](https://discord.com/channels/1480608573989064704/1
 
 ## Recent
 
+<Update label="Mayhem Mode Filter" description="pump.fun Mayhem Mode tokens hidden by default">
+  pump.fun launched Mayhem Mode in late 2025 — when a token launches in Mayhem Mode, pump.fun runs its own AI trading bot on it for the first 24 hours. Mayhem tokens also carry double the normal token supply (2 billion vs 1 billion), which changes the graduation threshold math.
+
+  The bot's random-walk activity corrupts the velocity and momentum signals Dequan uses to rank tokens. A Mayhem token can appear to have strong momentum when it doesn't, and vice versa. To keep the main feed readable, Mayhem Mode tokens are now hidden from the Pump Zone by default.
+
+  To trade them anyway, open the **Filter Drawer** and toggle off **"Hide Mayhem Tokens"** in Token Filters. The filter is opt-out — disable it only if you specifically want to trade Mayhem Mode tokens.
+
+  See [Mayhem Mode Filter](/pump-zone/mayhem-mode).
+</Update>
+
+<Update label="Raptor v0.6.1" description="Routing engine update; Meteora DLMM constraint errors resolved">
+  The routing engine has been updated to v0.6.1. The main fix is resolution of constraint errors on Meteora DLMM pool routes — previously, some DLMM tokens would fail routing silently or fall back unnecessarily. Routing on DLMM tokens is now reliable.
+</Update>
+
 <Update label="Email and Google Sign-In" description="New account entry points without a browser wallet extension">
   Users can now sign in to Dequan using email OTP or Google — no browser wallet extension required to get started. A Solana wallet is still required for trading, but the sign-in flow now works from a phone browser, a desktop with no extension installed, or any Google-authenticated device.
 

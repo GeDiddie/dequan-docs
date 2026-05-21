@@ -30,6 +30,7 @@
               "pump-zone/velocity-and-momentum",
               "pump-zone/ml-momentum-engine",
               "pump-zone/token-quality-score",
+              "pump-zone/mayhem-mode",
               "pump-zone/sniper-list-vs-pump-zone"
             ]
           },
