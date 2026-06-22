@@ -98,7 +98,9 @@
             "pages": [
               "resources/faq",
               "resources/glossary",
-              "resources/changelog"
+              "resources/changelog",
+              "resources/white-paper",
+              "resources/white-pages"
             ]
           }
         ]
