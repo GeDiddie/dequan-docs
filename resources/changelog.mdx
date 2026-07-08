@@ -15,6 +15,25 @@ Join the [#dev-announcements](https://discord.com/channels/1480608573989064704/1
 
 ## Recent
 
+<Update label="AutoSniper — Entry Quality Filters" description="New minimum MC and velocity settings to reduce rug-entry exposure">
+  Two new optional filters are available in the AutoSniper settings modal:
+
+  - **Min entry MC ($)** — skip tokens below a minimum market cap at entry time. Default 0 (off). Tokens with very low market caps at entry correlate strongly with position-stop outcomes in the decision journal data.
+  - **Min entry velEma** — skip tokens whose smoothed velocity is below an absolute floor, even if the ML score passes. Low-velocity tokens that score well tend to be stale or micro-cap setups with poor outcomes.
+
+  Both filters default to 0 (disabled). When set, they act as hard gates before a buy fires — tokens that don't meet the threshold are skipped and logged. Exploration buys are exempt from both filters so the model continues to collect outcome data across the full distribution.
+
+  These are data-derived, not hand-tuned — thresholds emerged from analysis of realized trade outcomes in the decision journal.
+</Update>
+
+<Update label="ML Model — Enriched Feature Set" description="Pump Score and Sniper Score models retrained with holder and liquidity signals">
+  Both scoring models (Pump Score and Sniper Score) have been retrained with an expanded feature set that now includes holder distribution and liquidity data alongside the existing momentum signals. The new signals connect the ML model to the same structural token data that powers the Token Quality Score.
+
+  The enriched models distinguish between tokens that have strong momentum but poor holder structure (higher rug risk) vs tokens where momentum and distribution align. AUC improved to 0.76 (Pump Score) and 0.77 (Sniper Score).
+
+  The inference cadence, score range, and UI behaviour are unchanged. The sidecar `.meta.json` file alongside each model file is now required for the Data Gateway to load the correct feature dimensions on startup and hot-reload.
+</Update>
+
 <Update label="Mayhem Mode Filter" description="pump.fun Mayhem Mode tokens hidden by default">
   pump.fun launched Mayhem Mode in late 2025 — when a token launches in Mayhem Mode, pump.fun runs its own AI trading bot on it for the first 24 hours. Mayhem tokens also carry double the normal token supply (2 billion vs 1 billion), which changes the graduation threshold math.
 

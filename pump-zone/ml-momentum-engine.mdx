@@ -59,9 +59,11 @@ As more tokens flow through the system, the training corpus grows. The model is 
 
 ---
 
-## The 7 features the model uses
+## The signals the model uses
 
-The model does not use price. It uses derivative signals that measure how a token is *moving*, not where it is:
+The model does not use price. It uses derivative signals and token structure data — signals that measure how a token is *moving* and who holds it:
+
+**Momentum signals** (computed from the live derivative pipeline):
 
 | Feature | What it means |
 |---|---|
@@ -73,7 +75,18 @@ The model does not use price. It uses derivative signals that measure how a toke
 | `log_mc` | Log-scale market cap (compresses the long tail) |
 | `token_age_sec` | How old the token is — new tokens behave differently |
 
-None of these features are available in the form Dequan computes them on any other platform. They require a live per-token derivative pipeline that's running continuously on the Pump Zone's data.
+**Holder and liquidity signals** (from the live token metadata stream):
+
+| Feature | What it means |
+|---|---|
+| `holders` | Number of unique token holders |
+| `top10Pct` | Supply concentration in the top 10 holders |
+| `devPct` | Developer wallet's current supply percentage |
+| `sniperPct` | Supply held by wallets flagged as snipers at launch |
+| `liquidityUsd` | Total pool liquidity in USD |
+| `tx5m` | Transaction count in the last 5 minutes |
+
+The momentum signals are not available in the form Dequan computes them on any other platform — they require the live per-token derivative pipeline. The holder and liquidity signals connect the ML model to the same safety data that powers the [Token Quality Score](/pump-zone/token-quality-score), so the model can learn which structural characteristics accompany real moves vs rugs.
 
 ---
 
@@ -127,7 +140,7 @@ The ML Momentum Engine is one input. The decision is yours.
 | Training corpus | Live Pump Zone derivative logs (continuous) |
 | Inference cadence | Every 500 ms, batched across all tracked tokens |
 | Inference location | Data Gateway (server-side) — not your browser |
-| AUC at last training | 0.72 (Pump Score), 0.72 (Sniper Score) |
+| AUC at last training | 0.76 (Pump Score), 0.77 (Sniper Score) |
 
 <Note>
 The model runs entirely on Dequan's servers. Your browser never sees the raw model weights, and the scores arrive as part of the standard token metrics stream. There is no latency penalty for ML mode vs RAW mode.
